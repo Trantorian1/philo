@@ -6,7 +6,7 @@
 #    By: emcnab <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/06 14:08:48 by emcnab            #+#    #+#              #
-#    Updated: 2023/04/06 17:15:36 by emcnab           ###   ########.fr        #
+#    Updated: 2023/04/06 17:39:23 by emcnab           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -84,12 +84,12 @@ all: dry_run $(BIN)
 # the libf has been compiled, and all object and dependency files have been
 # generated.
 $(BIN): $(LIB_FT) $(FILES_OBJS) $(FILES_DEPS)
-	# displays build status
+# 	displays build status
 	@echo "$(BOLD)$(BLUE)building $(WHITE)$(BIN)$(RESET)"
 	@printf "$(BOLD)$(WHITE)[100.00%%]$(RESET)"
-	# displays build command
+# 	displays build command
 	@printf " $(GREEN)$(C_COMPILER) $(C_FLAGS) $(FILES_OBJS) -o $(BIN) $(LIB_ARGS)$(RESET)\n"
-	# builds binary
+# 	builds binary
 	@mkdir -p $(@D)
 	@$(C_COMPILER) $(C_FLAGS) $(FILES_OBJS) -o $(BIN) $(LIB_ARGS)
 
