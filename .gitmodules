@@ -1,0 +1,6 @@
+[submodule "philo/vendor/extract_headers"]
+	path = philo/vendor/extract_headers
+	url = https://github.com/Trantorian1/extract_headers.git
+[submodule "philo/vendor/libft"]
+	path = philo/vendor/libft
+	url = https://github.com/Trantorian1/libft.git

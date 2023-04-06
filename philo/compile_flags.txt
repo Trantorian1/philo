@@ -1,0 +1,7 @@
+-I
+include/
+-Wall
+-Wextra
+-Werror
+-Weverything
+-pthread
