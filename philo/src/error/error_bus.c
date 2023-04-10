@@ -6,7 +6,7 @@
 /*   By: emcnab <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 18:52:34 by emcnab            #+#    #+#             */
-/*   Updated: 2023/04/06 19:03:41 by emcnab           ###   ########.fr       */
+/*   Updated: 2023/04/10 10:06:29 by emcnab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ t_s_error_bus	*error_bus(void)
 	static t_s_error_bus	*bus = NULL;
 
 	if (bus != NULL)
-		return ((t_s_error_bus *)bus);
+		return (bus);
 	bus = malloc(sizeof(*bus));
 	if (bus == NULL)
 		return (NULL);

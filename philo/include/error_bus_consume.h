@@ -6,7 +6,7 @@
 /*   By:  <>                                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 18:46:19 by                   #+#    #+#             */
-/*   Updated: 2023/04/06 18:46:19 by                  ###   ########.fr       */
+/*   Updated: 2023/04/10 09:45:17 by emcnab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,6 @@
 # include <stdbool.h>
 # include "s_error_bus.h"
 
-bool	error_bus_consume(t_s_error_bus *error_bus, t_e_error_code error_code);
+bool	error_bus_consume(t_e_error_code error_code);
 
 #endif

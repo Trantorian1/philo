@@ -5,16 +5,16 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By:  <>                                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/06 18:38:16 by                   #+#    #+#             */
-/*   Updated: 2023/04/06 18:38:16 by                  ###   ########.fr       */
+/*   Created: 2023/04/10 09:41:44 by                   #+#    #+#             */
+/*   Updated: 2023/04/10 09:42:40 by emcnab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef ERROR_BUS_SET_H
 # define ERROR_BUS_SET_H
 
-# include "s_error_bus.h"
+# include "e_error_code.h"
 
-void	error_bus_set(t_s_error_bus *error_bus, t_e_error_code error_code);
+void	error_bus_set(t_e_error_code error_code);
 
 #endif

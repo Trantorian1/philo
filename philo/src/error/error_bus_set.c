@@ -6,21 +6,28 @@
 /*   By: emcnab <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 18:35:57 by emcnab            #+#    #+#             */
-/*   Updated: 2023/04/06 18:43:10 by emcnab           ###   ########.fr       */
+/*   Updated: 2023/04/10 09:44:32 by emcnab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "error_bus_set.h"
 
+#include "error_bus.h"
+
+#include <pthread.h>
 #include <stdlib.h>
 #include <stdbool.h>
 
-void	error_bus_set(t_s_error_bus *error_bus, t_e_error_code error_code)
+void	error_bus_set(t_e_error_code error_code)
 {
-	bool	code_inv;
+	t_s_error_bus	*bus;
+	bool			inval_code;
 
-	code_inv = ((error_code == E_ERRORS_SIZE) || (error_code == ERROR_NONE));
-	if (error_bus == NULL || code_inv)
+	bus = error_bus();
+	inval_code = ((error_code == E_ERRORS_SIZE) || (error_code == ERROR_NONE));
+	if (bus == NULL || inval_code)
 		return ;
-	error_bus->errors[error_code]++;
+	pthread_mutex_lock(&bus->lock);
+	bus->errors[error_code]++;
+	pthread_mutex_unlock(&bus->lock);
 }
