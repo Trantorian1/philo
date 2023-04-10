@@ -1,18 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   f_runner.h                                         :+:      :+:    :+:   */
+/*   table_create.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emcnab <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By:  <>                                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/06 18:12:11 by emcnab            #+#    #+#             */
-/*   Updated: 2023/04/10 10:22:20 by emcnab           ###   ########.fr       */
+/*   Created: 2023/04/10 15:19:49 by                   #+#    #+#             */
+/*   Updated: 2023/04/10 15:19:49 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef F_RUNNER_H
-# define F_RUNNER_H
+#ifndef TABLE_CREATE_H
+# define TABLE_CREATE_H
 
-typedef void	*(t_f_runner)(void *);
+# include <stddef.h>
+# include "s_table.h"
 
-#endif // !DEBUG
+t_s_table	*table_create(size_t size, t_f_runner runner);
+
+#endif

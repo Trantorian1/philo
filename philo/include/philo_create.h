@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By:  <>                                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/06 18:20:55 by                   #+#    #+#             */
-/*   Updated: 2023/04/06 18:20:55 by                  ###   ########.fr       */
+/*   Created: 2023/04/10 15:13:25 by                   #+#    #+#             */
+/*   Updated: 2023/04/10 15:13:55 by emcnab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,9 @@
 
 # include "s_philo.h"
 
-t_s_philo	*philo_create(t_f_runner *runner);
+t_s_philo	*philo_create(
+	t_s_philo *philo,
+	t_s_promise *promise,
+	t_f_runner *runner);
 
 #endif

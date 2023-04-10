@@ -1,18 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   f_runner.h                                         :+:      :+:    :+:   */
+/*   promise_destroy.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: emcnab <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/06 18:12:11 by emcnab            #+#    #+#             */
-/*   Updated: 2023/04/10 10:22:20 by emcnab           ###   ########.fr       */
+/*   Created: 2023/04/10 14:29:40 by emcnab            #+#    #+#             */
+/*   Updated: 2023/04/10 14:36:21 by emcnab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef F_RUNNER_H
-# define F_RUNNER_H
+#include "promise_destroy.h"
 
-typedef void	*(t_f_runner)(void *);
+#include <stdlib.h>
 
-#endif // !DEBUG
+void	*promise_destroy(t_s_promise *promise)
+{
+	if (promise == NULL)
+		return (NULL);
+	promise->fork_right = NULL;
+	promise->fork_left = NULL;
+	free(promise);
+	return (NULL);
+}

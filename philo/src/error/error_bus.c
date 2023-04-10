@@ -6,7 +6,7 @@
 /*   By: emcnab <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 18:52:34 by emcnab            #+#    #+#             */
-/*   Updated: 2023/04/10 10:06:29 by emcnab           ###   ########.fr       */
+/*   Updated: 2023/04/10 10:31:42 by emcnab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,8 @@ t_s_error_bus	*error_bus(void)
 	if (bus == NULL)
 		return (NULL);
 	memset(bus->errors, 0, E_ERRORS_SIZE);
-	pthread_mutex_init(&bus->lock, NULL);
+	if (pthread_mutex_init(&bus->lock, NULL) != EXIT_SUCCESS)
+		return ((void)free(bus), NULL);
 	return (bus);
 }
 

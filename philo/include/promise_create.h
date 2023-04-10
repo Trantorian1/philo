@@ -1,18 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   f_runner.h                                         :+:      :+:    :+:   */
+/*   promise_create.h                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emcnab <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By:  <>                                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/06 18:12:11 by emcnab            #+#    #+#             */
-/*   Updated: 2023/04/10 10:22:20 by emcnab           ###   ########.fr       */
+/*   Created: 2023/04/10 14:26:24 by                   #+#    #+#             */
+/*   Updated: 2023/04/10 14:26:56 by emcnab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef F_RUNNER_H
-# define F_RUNNER_H
+#ifndef PROMISE_CREATE_H
+# define PROMISE_CREATE_H
 
-typedef void	*(t_f_runner)(void *);
+# include <pthread.h>
 
-#endif // !DEBUG
+# include "s_promise.h"
+
+t_s_promise	*promise_create(
+	pthread_mutex_t *fork_left,
+	pthread_mutex_t *fork_right);
+
+#endif

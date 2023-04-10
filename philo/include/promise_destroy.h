@@ -1,18 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   f_runner.h                                         :+:      :+:    :+:   */
+/*   promise_destroy.h                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emcnab <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By:  <>                                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/06 18:12:11 by emcnab            #+#    #+#             */
-/*   Updated: 2023/04/10 10:22:20 by emcnab           ###   ########.fr       */
+/*   Created: 2023/04/10 14:34:56 by                   #+#    #+#             */
+/*   Updated: 2023/04/10 14:36:35 by emcnab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef F_RUNNER_H
-# define F_RUNNER_H
+#ifndef PROMISE_DESTROY_H
+# define PROMISE_DESTROY_H
 
-typedef void	*(t_f_runner)(void *);
+# include "s_promise.h"
 
-#endif // !DEBUG
+void	*promise_destroy(t_s_promise *promise);
+
+#endif

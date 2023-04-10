@@ -1,18 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   f_runner.h                                         :+:      :+:    :+:   */
+/*   philo_destroy.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: emcnab <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/06 18:12:11 by emcnab            #+#    #+#             */
-/*   Updated: 2023/04/10 10:22:20 by emcnab           ###   ########.fr       */
+/*   Created: 2023/04/10 14:16:00 by emcnab            #+#    #+#             */
+/*   Updated: 2023/04/10 14:34:03 by emcnab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef F_RUNNER_H
-# define F_RUNNER_H
+#include "philo_destroy.h"
 
-typedef void	*(t_f_runner)(void *);
+#include <pthread.h>
+#include <stdlib.h>
 
-#endif // !DEBUG
+void	*philo_destroy(t_s_philo *philo)
+{
+	if (philo == NULL)
+		return (NULL);
+	philo->promise = NULL;
+	philo->runner = NULL;
+	free(philo);
+	return (NULL);
+}

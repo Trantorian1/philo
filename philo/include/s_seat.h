@@ -1,18 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   f_runner.h                                         :+:      :+:    :+:   */
+/*   s_seat.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: emcnab <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/06 18:12:11 by emcnab            #+#    #+#             */
-/*   Updated: 2023/04/10 10:22:20 by emcnab           ###   ########.fr       */
+/*   Created: 2023/04/10 14:40:58 by emcnab            #+#    #+#             */
+/*   Updated: 2023/04/10 14:42:35 by emcnab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef F_RUNNER_H
-# define F_RUNNER_H
+#ifndef S_SEAT_H
+# define S_SEAT_H
 
-typedef void	*(t_f_runner)(void *);
+# include "s_philo.h"
 
-#endif // !DEBUG
+typedef struct s_seat
+{
+	t_s_philo	*seated;
+	t_s_philo	*neighbour_left;
+	t_s_philo	*neighbour_right;
+}	t_s_seat;
+
+#endif

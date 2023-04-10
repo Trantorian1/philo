@@ -6,7 +6,7 @@
 /*   By: emcnab <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 18:15:27 by emcnab            #+#    #+#             */
-/*   Updated: 2023/04/06 18:19:50 by emcnab           ###   ########.fr       */
+/*   Updated: 2023/04/10 15:08:35 by emcnab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,12 @@
 # define S_TABLE_H
 
 # include "s_philo.h"
+# include "s_seat.h"
 
 typedef struct s_table
 {
-	t_s_philo	*neighbour_left;
-	t_s_philo	*neighbour_right;
+	size_t		size;
+	t_s_philo	*guests;
 }	t_s_table;
 
 #endif // !DEBUG
