@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: emcnab <marvin@42.fr>                      +#+  +:+       +#+         #
+#    By: emcnab <emcnab@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/06 14:08:48 by emcnab            #+#    #+#              #
-#    Updated: 2023/04/06 17:39:23 by emcnab           ###   ########.fr        #
+#    Updated: 2023/04/11 14:20:00 by emcnab           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,7 +49,7 @@ DIR_BUILD = ./build
 DIR_OBJS = $(DIR_BUILD)/objs
 DIR_DEPS = $(DIR_BUILD)/deps
 DIR_SRCS = ./src
-DIR_INCL = ./include
+DIR_INCL = ./include ./vendor/libft
 DIR_BIN = ./bin
 
 FILES_SRCS = $(shell find . -wholename "$(DIR_SRCS)/*.c")
@@ -57,8 +57,9 @@ FILES_OBJS = $(patsubst $(DIR_SRCS)/%.c,$(DIR_OBJS)/%.o,$(FILES_SRCS))
 FILES_DEPS = $(patsubst $(DIR_SRCS)/%.c,$(DIR_DEPS)/%.d,$(FILES_SRCS))
 
 C_COMPILER = clang
-C_FLAGS = -Wall -Wextra -Werror -Weverything -I$(DIR_INCL)
-C_DEPS = -MM -MP -I$(DIR_INCL)
+I_FLAGS = $(foreach dir,$(DIR_INCL),-I$(dir) )
+C_FLAGS = -Wall -Wextra -Werror -Weverything -Wno-padded -g $(I_FLAGS)
+C_DEPS = -MM -MP $(I_FLAGS)
 
 BIN = $(DIR_BIN)/philo
 LIB_FT = ./vendor/libft/libft.a
@@ -191,6 +192,7 @@ debug:
 	@echo $(FILES_SRCS)
 	@echo $(FILES_OBJS)
 	@echo $(FILES_DEPS)
+	@echo $(C_FLAGS)
 	echo $(TARGET)
 
 

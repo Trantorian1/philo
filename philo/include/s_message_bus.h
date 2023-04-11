@@ -1,26 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   e_philo_state.h                                    :+:      :+:    :+:   */
+/*   s_message_bus.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: emcnab <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/06 18:17:18 by emcnab            #+#    #+#             */
-/*   Updated: 2023/04/11 13:01:35 by emcnab           ###   ########.fr       */
+/*   Created: 2023/04/11 10:58:46 by emcnab            #+#    #+#             */
+/*   Updated: 2023/04/11 17:37:31 by emcnab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef E_PHILO_STATE_H
-# define E_PHILO_STATE_H
+#ifndef S_MESSAGE_BUS_H
+# define S_MESSAGE_BUS_H
 
-typedef enum e_philo_state
+# define MESSAGE_BUS_SIZE 1024
+
+# include <stddef.h>
+# include <pthread.h>
+
+# include "s_message.h"
+
+typedef struct s_message_bus
 {
-	STATE_WAITING,
-	STATE_PICK_FORK,
-	STATE_EATING,
-	STATE_SLEEPING,
-	STATE_THINKING,
-	E_PHILO_STATE_SIZE
-}	t_e_philo_state;
+	size_t			size;
+	t_s_message		*tail;
+	t_s_message		*head;
+	pthread_mutex_t	lock_tail;
+	pthread_mutex_t	lock_head;
+	pthread_mutex_t	lock_write;
+	t_s_message		buffer_start[MESSAGE_BUS_SIZE];
+}	t_s_message_bus;
 
-#endif // !E_PHILO_STATE_H
+#endif

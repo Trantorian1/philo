@@ -1,26 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   e_philo_state.h                                    :+:      :+:    :+:   */
+/*   message_bus_get_tail.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: emcnab <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/06 18:17:18 by emcnab            #+#    #+#             */
-/*   Updated: 2023/04/11 13:01:35 by emcnab           ###   ########.fr       */
+/*   Created: 2023/04/11 15:07:51 by emcnab            #+#    #+#             */
+/*   Updated: 2023/04/11 17:20:07 by emcnab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef E_PHILO_STATE_H
-# define E_PHILO_STATE_H
+#include "message_bus_get_tail.h"
 
-typedef enum e_philo_state
+#include "message_bus_get.h"
+
+t_s_message	*message_bus_get_tail(void)
 {
-	STATE_WAITING,
-	STATE_PICK_FORK,
-	STATE_EATING,
-	STATE_SLEEPING,
-	STATE_THINKING,
-	E_PHILO_STATE_SIZE
-}	t_e_philo_state;
+	t_s_message_bus	*message_bus;
+	t_s_message		*tail;
 
-#endif // !E_PHILO_STATE_H
+	message_bus = message_bus_get();
+	pthread_mutex_lock(&message_bus->lock_tail);
+	tail = message_bus->tail;
+	pthread_mutex_unlock(&message_bus->lock_tail);
+	return (tail);
+}

@@ -1,5 +1,7 @@
 -I
 include/
+-I
+vendor/libft/
 -Wall
 -Wextra
 -Werror

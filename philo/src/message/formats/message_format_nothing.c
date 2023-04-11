@@ -1,26 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   e_philo_state.h                                    :+:      :+:    :+:   */
+/*   message_format_nothing.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: emcnab <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/06 18:17:18 by emcnab            #+#    #+#             */
-/*   Updated: 2023/04/11 13:01:35 by emcnab           ###   ########.fr       */
+/*   Created: 2023/04/11 13:21:10 by emcnab            #+#    #+#             */
+/*   Updated: 2023/04/11 13:21:52 by emcnab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef E_PHILO_STATE_H
-# define E_PHILO_STATE_H
+#include "message_format_nothing.h"
 
-typedef enum e_philo_state
+void	message_format_nothing(t_s_message *message)
 {
-	STATE_WAITING,
-	STATE_PICK_FORK,
-	STATE_EATING,
-	STATE_SLEEPING,
-	STATE_THINKING,
-	E_PHILO_STATE_SIZE
-}	t_e_philo_state;
-
-#endif // !E_PHILO_STATE_H
+	(void)message;
+}

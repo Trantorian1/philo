@@ -1,26 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   e_philo_state.h                                    :+:      :+:    :+:   */
+/*   message_bus_init.h                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emcnab <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By:  <>                                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/06 18:17:18 by emcnab            #+#    #+#             */
-/*   Updated: 2023/04/11 13:01:35 by emcnab           ###   ########.fr       */
+/*   Created: 2023/04/11 14:40:01 by                   #+#    #+#             */
+/*   Updated: 2023/04/11 14:40:01 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef E_PHILO_STATE_H
-# define E_PHILO_STATE_H
+#ifndef MESSAGE_BUS_INIT_H
+# define MESSAGE_BUS_INIT_H
 
-typedef enum e_philo_state
-{
-	STATE_WAITING,
-	STATE_PICK_FORK,
-	STATE_EATING,
-	STATE_SLEEPING,
-	STATE_THINKING,
-	E_PHILO_STATE_SIZE
-}	t_e_philo_state;
+# include <stdint.h>
 
-#endif // !E_PHILO_STATE_H
+int32_t	message_bus_init(void);
+
+#endif

@@ -6,7 +6,7 @@
 /*   By: emcnab <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/10 14:36:45 by emcnab            #+#    #+#             */
-/*   Updated: 2023/04/10 18:38:10 by emcnab           ###   ########.fr       */
+/*   Updated: 2023/04/11 14:22:58 by emcnab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,9 +98,9 @@ int32_t	table_init(size_t size, t_f_runner runner)
 	table->game_state = IDLE;
 	table->size = size;
 	if (init_guests(table, runner) == EXIT_FAILURE)
-		return ((void)table_destroy(table), EXIT_FAILURE);
+		return ((void)table_destroy(), EXIT_FAILURE);
 	if (init_cuttlery(table) == EXIT_FAILURE)
-		return ((void)table_destroy(table), EXIT_FAILURE);
+		return ((void)table_destroy(), EXIT_FAILURE);
 	distribute_cuttlery(table);
-	return (EXIT_FAILURE);
+	return (EXIT_SUCCESS);
 }

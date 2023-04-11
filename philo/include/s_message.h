@@ -1,26 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo_deinit.c                                     :+:      :+:    :+:   */
+/*   s_message.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: emcnab <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/10 17:19:00 by emcnab            #+#    #+#             */
-/*   Updated: 2023/04/10 17:28:23 by emcnab           ###   ########.fr       */
+/*   Created: 2023/04/11 10:56:50 by emcnab            #+#    #+#             */
+/*   Updated: 2023/04/11 10:58:10 by emcnab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo_deinit.h"
+#ifndef S_MESSAGE_H
+# define S_MESSAGE_H
 
-#include <stdlib.h>
+# include <stdint.h>
 
-// TODO: Make sure this works if philo->fork_left or philo->fork_right haven't
-// been initialised.
-int32_t	philo_deinit(t_s_philo *philo)
+# include "e_philo_state.h"
+
+typedef struct s_message
 {
-	if (philo == NULL)
-		return (EXIT_FAILURE);
-	pthread_mutex_destroy(&philo->fork_left);
-	pthread_mutex_destroy(&philo->fork_right);
-	return (EXIT_SUCCESS);
-}
+	int32_t			id;
+	t_e_philo_state	state;
+}	t_s_message;
+
+#endif

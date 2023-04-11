@@ -1,26 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   e_philo_state.h                                    :+:      :+:    :+:   */
+/*   message_print.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emcnab <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By:  <>                                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/06 18:17:18 by emcnab            #+#    #+#             */
-/*   Updated: 2023/04/11 13:01:35 by emcnab           ###   ########.fr       */
+/*   Created: 2023/04/11 12:58:01 by                   #+#    #+#             */
+/*   Updated: 2023/04/11 12:58:01 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef E_PHILO_STATE_H
-# define E_PHILO_STATE_H
+#ifndef MESSAGE_PRINT_H
+# define MESSAGE_PRINT_H
 
-typedef enum e_philo_state
-{
-	STATE_WAITING,
-	STATE_PICK_FORK,
-	STATE_EATING,
-	STATE_SLEEPING,
-	STATE_THINKING,
-	E_PHILO_STATE_SIZE
-}	t_e_philo_state;
+# include <stdint.h>
+# include "s_message.h"
 
-#endif // !E_PHILO_STATE_H
+int32_t	message_print(t_s_message *message);
+
+#endif

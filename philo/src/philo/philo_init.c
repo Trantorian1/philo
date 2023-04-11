@@ -6,7 +6,7 @@
 /*   By: emcnab <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 18:20:18 by emcnab            #+#    #+#             */
-/*   Updated: 2023/04/10 18:36:45 by emcnab           ###   ########.fr       */
+/*   Updated: 2023/04/11 14:20:25 by emcnab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static void	*loop(void *data)
 		return (NULL);
 	philo = (t_s_philo *)data;
 	table = table_get();
-	while (table->game_state != SYNCHRONISED)
+	while (table->game_state == IDLE)
 		continue ;
 	return (philo->runner(philo));
 }
@@ -45,10 +45,9 @@ int32_t	philo_init(
 	if (philo == NULL || runner == NULL)
 		return (EXIT_FAILURE);
 	philo->id = id;
-	philo->state = WAITING;
+	philo->state = STATE_WAITING;
 	philo->runner = runner;
 	if (pthread_create(&philo->thread, NULL, &loop, philo) != EXIT_SUCCESS)
 		return ((void)error_bus_set(ERROR_CREATE), EXIT_FAILURE);
-	pthread_detach(philo->thread);
 	return (EXIT_SUCCESS);
 }

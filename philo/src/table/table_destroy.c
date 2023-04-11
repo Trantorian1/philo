@@ -6,7 +6,7 @@
 /*   By: emcnab <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/10 15:20:52 by emcnab            #+#    #+#             */
-/*   Updated: 2023/04/11 10:01:24 by emcnab           ###   ########.fr       */
+/*   Updated: 2023/04/11 10:42:18 by emcnab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,23 +17,14 @@
 #include "error_bus_destroy.h"
 #include "philo_deinit.h"
 #include "table.h"
-
-static void	destroy_guests(t_s_table *table)
-{
-	size_t	index;
-
-	index = (size_t)(-1);
-	while (++index < table->size)
-		philo_deinit(&table->guests[index]);
-	free(table->guests);
-}
+#include "table_join.h"
 
 static void	destroy_forks(t_s_table *table)
 {
 	size_t	index;
 
 	index = (size_t)(-1);
-	while (++index < table.size)
+	while (++index < table->size)
 		pthread_mutex_destroy(&table->forks[index]);
 	free(table->forks);
 }
@@ -45,8 +36,9 @@ void	*table_destroy(void)
 	table = table_get();
 	if (table == NULL)
 		return (NULL);
+	table_join();
 	if (table->guests)
-		destroy_guests(table);
+		free(table->guests);
 	if (table->forks)
 		destroy_forks(table);
 	error_bus_destroy();
