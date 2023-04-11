@@ -1,33 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   s_philo.h                                          :+:      :+:    :+:   */
+/*   table_get_right.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: emcnab <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/06 18:08:42 by emcnab            #+#    #+#             */
-/*   Updated: 2023/04/10 17:26:35 by emcnab           ###   ########.fr       */
+/*   Created: 2023/04/10 17:06:09 by emcnab            #+#    #+#             */
+/*   Updated: 2023/04/10 17:56:07 by emcnab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef S_PHILO_H
-# define S_PHILO_H
+#include "table_get_right.h"
 
-# include <pthread.h>
-#include <stdint.h>
-
-# include "e_philo_state.h"
-# include "s_promise.h"
-# include "f_runner.h"
-
-typedef struct s_philo
+t_s_philo	*tables_get_right(t_s_table *table, size_t seat)
 {
-	size_t			id;
-	t_e_philo_state	state;
-	pthread_mutex_t	fork_left;
-	pthread_mutex_t	fork_right;
-	pthread_t		thread;
-	t_f_runner		*runner;
-}	t_s_philo;
-
-#endif // !S_PHILO_H
+	if (table == NULL || seat >= table->size)
+		return (NULL);
+	if (seat == table->size - 1)
+		return (&table->guests[0]);
+	return (&table->guests[seat]);
+}

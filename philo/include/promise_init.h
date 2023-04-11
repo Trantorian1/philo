@@ -1,26 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo_destroy.c                                    :+:      :+:    :+:   */
+/*   promise_init.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emcnab <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By:  <>                                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/10 14:16:00 by emcnab            #+#    #+#             */
-/*   Updated: 2023/04/10 14:34:03 by emcnab           ###   ########.fr       */
+/*   Created: 2023/04/10 16:52:03 by                   #+#    #+#             */
+/*   Updated: 2023/04/10 16:53:55 by emcnab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo_destroy.h"
+#ifndef PROMISE_INIT_H
+# define PROMISE_INIT_H
 
-#include <pthread.h>
-#include <stdlib.h>
+# include <stdint.h>
 
-void	*philo_destroy(t_s_philo *philo)
-{
-	if (philo == NULL)
-		return (NULL);
-	philo->promise = NULL;
-	philo->runner = NULL;
-	free(philo);
-	return (NULL);
-}
+# include "s_promise.h"
+
+int32_t	promise_init(
+	t_s_promise *promise,
+	pthread_mutex_t *fork_left,
+	pthread_mutex_t *fork_right);
+
+#endif

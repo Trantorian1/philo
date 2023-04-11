@@ -1,33 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   promise_create.c                                   :+:      :+:    :+:   */
+/*   error_bus_destroy.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: emcnab <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/10 14:24:53 by emcnab            #+#    #+#             */
-/*   Updated: 2023/04/10 14:29:26 by emcnab           ###   ########.fr       */
+/*   Created: 2023/04/11 10:00:44 by emcnab            #+#    #+#             */
+/*   Updated: 2023/04/11 10:01:09 by emcnab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "promise_create.h"
+#include "error_bus_destroy.h"
 
-#include <stdbool.h>
 #include <stdlib.h>
 
-t_s_promise	*promise_create(
-	pthread_mutex_t *fork_left,
-	pthread_mutex_t *fork_right)
-{
-	t_s_promise	*promise;
+#include "error_bus.h"
 
-	if (fork_left == NULL || fork_right == NULL)
+/**
+ * @brief Destroys the error bus.
+ *
+ * @return (void *): NULL
+ */
+void	*error_bus_destroy(void)
+{
+	t_s_error_bus	*bus;
+
+	bus = error_bus();
+	if (bus == NULL)
 		return (NULL);
-	promise = malloc(sizeof(*promise));
-	if (promise == NULL)
-		return (NULL);
-	promise->locked = false;
-	promise->fork_left = fork_left;
-	promise->fork_right = fork_right;
-	return (promise);
+	pthread_mutex_destroy(&bus->lock);
+	free(bus);
+	return (NULL);
 }

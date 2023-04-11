@@ -1,18 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   f_runner.h                                         :+:      :+:    :+:   */
+/*   philo_deinit.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emcnab <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By:  <>                                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/06 18:12:11 by emcnab            #+#    #+#             */
-/*   Updated: 2023/04/10 15:42:40 by emcnab           ###   ########.fr       */
+/*   Created: 2023/04/10 17:20:01 by                   #+#    #+#             */
+/*   Updated: 2023/04/10 17:20:01 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef F_RUNNER_H
-# define F_RUNNER_H
+#ifndef PHILO_DEINIT_H
+# define PHILO_DEINIT_H
 
-typedef void	*(t_f_runner)(void *);
+# include <stdint.h>
+# include "s_philo.h"
 
-#endif // !DEBUG
+int32_t	philo_deinit(t_s_philo *philo);
+
+#endif

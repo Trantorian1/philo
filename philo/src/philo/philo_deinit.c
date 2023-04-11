@@ -1,33 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   s_philo.h                                          :+:      :+:    :+:   */
+/*   philo_deinit.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: emcnab <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/06 18:08:42 by emcnab            #+#    #+#             */
-/*   Updated: 2023/04/10 17:26:35 by emcnab           ###   ########.fr       */
+/*   Created: 2023/04/10 17:19:00 by emcnab            #+#    #+#             */
+/*   Updated: 2023/04/10 17:28:23 by emcnab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef S_PHILO_H
-# define S_PHILO_H
+#include "philo_deinit.h"
 
-# include <pthread.h>
-#include <stdint.h>
+#include <stdlib.h>
 
-# include "e_philo_state.h"
-# include "s_promise.h"
-# include "f_runner.h"
-
-typedef struct s_philo
+// TODO: Make sure this works if philo->fork_left or philo->fork_right haven't
+// been initialised.
+int32_t	philo_deinit(t_s_philo *philo)
 {
-	size_t			id;
-	t_e_philo_state	state;
-	pthread_mutex_t	fork_left;
-	pthread_mutex_t	fork_right;
-	pthread_t		thread;
-	t_f_runner		*runner;
-}	t_s_philo;
-
-#endif // !S_PHILO_H
+	if (philo == NULL)
+		return (EXIT_FAILURE);
+	pthread_mutex_destroy(&philo->fork_left);
+	pthread_mutex_destroy(&philo->fork_right);
+	return (EXIT_SUCCESS);
+}

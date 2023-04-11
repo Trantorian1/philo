@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   f_runner.h                                         :+:      :+:    :+:   */
+/*   error_bus_destroy.h                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emcnab <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By:  <>                                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/06 18:12:11 by emcnab            #+#    #+#             */
-/*   Updated: 2023/04/10 15:42:40 by emcnab           ###   ########.fr       */
+/*   Created: 2023/04/11 10:00:49 by                   #+#    #+#             */
+/*   Updated: 2023/04/11 10:00:49 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef F_RUNNER_H
-# define F_RUNNER_H
+#ifndef ERROR_BUS_DESTROY_H
+# define ERROR_BUS_DESTROY_H
 
-typedef void	*(t_f_runner)(void *);
+void	*error_bus_destroy(void);
 
-#endif // !DEBUG
+#endif

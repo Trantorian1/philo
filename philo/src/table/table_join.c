@@ -1,25 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   promise_destroy.c                                  :+:      :+:    :+:   */
+/*   table_join.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: emcnab <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/10 14:29:40 by emcnab            #+#    #+#             */
-/*   Updated: 2023/04/10 14:36:21 by emcnab           ###   ########.fr       */
+/*   Created: 2023/04/10 18:47:29 by emcnab            #+#    #+#             */
+/*   Updated: 2023/04/10 18:54:37 by emcnab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "promise_destroy.h"
+#include "table_join.h"
 
-#include <stdlib.h>
+#include <pthread.h>
+#include <stddef.h>
 
-void	*promise_destroy(t_s_promise *promise)
+#include "s_table.h"
+#include "table.h"
+
+void	table_join(void)
 {
-	if (promise == NULL)
-		return (NULL);
-	promise->fork_right = NULL;
-	promise->fork_left = NULL;
-	free(promise);
-	return (NULL);
+	t_s_table	*table;
+	size_t		index;
+
+	table = table_get();
+	index = (size_t)(-1);
+	while (++index < table->size)
+		pthread_join(table->guests[index].thread, NULL);
 }

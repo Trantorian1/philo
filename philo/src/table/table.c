@@ -1,33 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   s_philo.h                                          :+:      :+:    :+:   */
+/*   table.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: emcnab <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/06 18:08:42 by emcnab            #+#    #+#             */
-/*   Updated: 2023/04/10 17:26:35 by emcnab           ###   ########.fr       */
+/*   Created: 2023/04/10 18:27:04 by emcnab            #+#    #+#             */
+/*   Updated: 2023/04/10 18:30:26 by emcnab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef S_PHILO_H
-# define S_PHILO_H
+#include "table.h"
 
-# include <pthread.h>
-#include <stdint.h>
+#include <stdlib.h>
 
-# include "e_philo_state.h"
-# include "s_promise.h"
-# include "f_runner.h"
-
-typedef struct s_philo
+t_s_table	*table_get(void)
 {
-	size_t			id;
-	t_e_philo_state	state;
-	pthread_mutex_t	fork_left;
-	pthread_mutex_t	fork_right;
-	pthread_t		thread;
-	t_f_runner		*runner;
-}	t_s_philo;
+	static t_s_table	*table = NULL;
 
-#endif // !S_PHILO_H
+	if (table != NULL)
+		return (table);
+	table = malloc(sizeof(*table));
+	return (table);
+}

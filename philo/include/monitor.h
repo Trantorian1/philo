@@ -1,18 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   f_runner.h                                         :+:      :+:    :+:   */
+/*   monitor.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emcnab <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By:  <>                                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/06 18:12:11 by emcnab            #+#    #+#             */
-/*   Updated: 2023/04/10 15:42:40 by emcnab           ###   ########.fr       */
+/*   Created: 2023/04/10 16:01:18 by                   #+#    #+#             */
+/*   Updated: 2023/04/10 16:01:18 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef F_RUNNER_H
-# define F_RUNNER_H
+#ifndef MONITOR_H
+# define MONITOR_H
 
-typedef void	*(t_f_runner)(void *);
+# include "s_monitor.h"
 
-#endif // !DEBUG
+t_s_monitor	*monitor_get(void);
+
+#endif

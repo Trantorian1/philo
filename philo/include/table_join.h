@@ -1,24 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   promise_create.h                                   :+:      :+:    :+:   */
+/*   table_join.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By:  <>                                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/10 14:26:24 by                   #+#    #+#             */
-/*   Updated: 2023/04/10 14:26:56 by emcnab           ###   ########.fr       */
+/*   Created: 2023/04/10 18:54:29 by                   #+#    #+#             */
+/*   Updated: 2023/04/10 18:54:29 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PROMISE_CREATE_H
-# define PROMISE_CREATE_H
+#ifndef TABLE_JOIN_H
+# define TABLE_JOIN_H
 
-# include <pthread.h>
-
-# include "s_promise.h"
-
-t_s_promise	*promise_create(
-	pthread_mutex_t *fork_left,
-	pthread_mutex_t *fork_right);
+void	table_join(void);
 
 #endif

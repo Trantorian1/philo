@@ -1,23 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo_create.h                                     :+:      :+:    :+:   */
+/*   table.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By:  <>                                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/10 15:13:25 by                   #+#    #+#             */
-/*   Updated: 2023/04/10 15:13:55 by emcnab           ###   ########.fr       */
+/*   Created: 2023/04/10 18:29:29 by                   #+#    #+#             */
+/*   Updated: 2023/04/10 18:29:29 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHILO_CREATE_H
-# define PHILO_CREATE_H
+#ifndef TABLE_H
+# define TABLE_H
 
-# include "s_philo.h"
+# include "s_table.h"
 
-t_s_philo	*philo_create(
-	t_s_philo *philo,
-	t_s_promise *promise,
-	t_f_runner *runner);
+t_s_table	*table_get(void);
 
 #endif

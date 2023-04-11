@@ -1,18 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   f_runner.h                                         :+:      :+:    :+:   */
+/*   table_get_left.h                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emcnab <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By:  <>                                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/06 18:12:11 by emcnab            #+#    #+#             */
-/*   Updated: 2023/04/10 15:42:40 by emcnab           ###   ########.fr       */
+/*   Created: 2023/04/10 17:54:20 by                   #+#    #+#             */
+/*   Updated: 2023/04/10 17:55:08 by emcnab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef F_RUNNER_H
-# define F_RUNNER_H
+#ifndef TABLE_GET_LEFT_H
+# define TABLE_GET_LEFT_H
 
-typedef void	*(t_f_runner)(void *);
+# include <stddef.h>
 
-#endif // !DEBUG
+# include "s_philo.h"
+# include "s_table.h"
+
+t_s_philo	*table_get_left(t_s_table *table, size_t seat);
+
+#endif

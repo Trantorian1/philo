@@ -1,18 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   f_runner.h                                         :+:      :+:    :+:   */
+/*   monitor_init.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emcnab <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By:  <>                                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/06 18:12:11 by emcnab            #+#    #+#             */
-/*   Updated: 2023/04/10 15:42:40 by emcnab           ###   ########.fr       */
+/*   Created: 2023/04/10 16:01:43 by                   #+#    #+#             */
+/*   Updated: 2023/04/10 16:02:10 by emcnab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef F_RUNNER_H
-# define F_RUNNER_H
+#ifndef MONITOR_INIT_H
+# define MONITOR_INIT_H
 
-typedef void	*(t_f_runner)(void *);
+# include <stddef.h>
+# include <stdint.h>
 
-#endif // !DEBUG
+# include "f_runner.h"
+
+int32_t	monitor_init(size_t size, t_f_runner *runner);
+
+#endif

@@ -6,7 +6,7 @@
 /*   By: emcnab <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 18:52:34 by emcnab            #+#    #+#             */
-/*   Updated: 2023/04/10 10:31:42 by emcnab           ###   ########.fr       */
+/*   Updated: 2023/04/11 10:00:25 by emcnab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,21 +34,4 @@ t_s_error_bus	*error_bus(void)
 	if (pthread_mutex_init(&bus->lock, NULL) != EXIT_SUCCESS)
 		return ((void)free(bus), NULL);
 	return (bus);
-}
-
-/**
- * @brief Destroys the error bus.
- *
- * @return (void *): NULL
- */
-void	*error_bus_destroy(void)
-{
-	t_s_error_bus	*bus;
-
-	bus = error_bus();
-	if (bus == NULL)
-		return (NULL);
-	pthread_mutex_destroy(&bus->lock);
-	free(bus);
-	return (NULL);
 }

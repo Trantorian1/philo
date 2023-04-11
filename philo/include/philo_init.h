@@ -1,18 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   f_runner.h                                         :+:      :+:    :+:   */
+/*   philo_init.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emcnab <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By:  <>                                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/06 18:12:11 by emcnab            #+#    #+#             */
-/*   Updated: 2023/04/10 15:42:40 by emcnab           ###   ########.fr       */
+/*   Created: 2023/04/10 15:13:25 by                   #+#    #+#             */
+/*   Updated: 2023/04/10 15:46:33 by emcnab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef F_RUNNER_H
-# define F_RUNNER_H
+#ifndef PHILO_CREATE_H
+# define PHILO_CREATE_H
 
-typedef void	*(t_f_runner)(void *);
+# include <stddef.h>
+# include <stdint.h>
 
-#endif // !DEBUG
+# include "s_philo.h"
+
+int32_t	philo_init(
+	t_s_philo *philo,
+	size_t id,
+	t_f_runner *runner);
+
+#endif
