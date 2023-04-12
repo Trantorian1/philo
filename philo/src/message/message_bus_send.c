@@ -6,7 +6,7 @@
 /*   By: emcnab <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 11:34:37 by emcnab            #+#    #+#             */
-/*   Updated: 2023/04/11 18:53:02 by emcnab           ###   ########.fr       */
+/*   Updated: 2023/04/12 10:52:31 by emcnab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,17 +18,6 @@
 #include "message_bus_flush.h"
 #include "message_bus_get_head.h"
 #include "message_bus_get_tail.h"
-
-static t_s_message	*message_bus_get_head_next(t_s_message_bus *message_bus)
-{
-	t_s_message	*head;
-
-	head = message_bus_get_head();
-	if (head < (message_bus->buffer_start + MESSAGE_BUS_SIZE - 1))
-		return (head + 1);
-	else
-		return (message_bus->buffer_start);
-}
 
 static void	message_bus_head_incr(t_s_message_bus *message_bus)
 {
@@ -53,27 +42,28 @@ static void	message_bus_head_incr(t_s_message_bus *message_bus)
  * updated, no invalid data will be read. This is because the message buffer
  * head is atomically incremented only once the message has been updated.
  *
- * @param id (int32_t): Id of the philosopher sending the message.
+ * @param id (size_t): Id of the philosopher sending the message.
  * @param state (t_e_philo_state): State of the philosopher sending the message.
  * Will condition the type of message to be displayed.
  *
  * @return (int32_t): EXIT_SUCCESS.
  */
-int32_t	message_bus_send(int32_t id, t_e_philo_state state)
+int32_t	message_bus_send(size_t id, t_e_philo_state state)
 {
 	t_s_message_bus	*message_bus;
-	t_s_message		*tail_curr;
-	t_s_message		*head_next;
+	t_s_message		*tail;
+	t_s_message		*head;
 
 	message_bus = message_bus_get();
 	pthread_mutex_lock(&message_bus->lock_write);
-	tail_curr = message_bus_get_tail();
-	head_next = message_bus_get_head_next(message_bus);
-	if (head_next == tail_curr)
+	tail = message_bus_get_tail();
+	head = message_bus_get_head();
+	if (message_bus->size > 0 && head == tail)
 		message_bus_flush();
-	head_next->id = id;
-	head_next->state = state;
+	head->id = id;
+	head->state = state;
 	message_bus_head_incr(message_bus);
+	message_bus->size++;
 	pthread_mutex_unlock(&message_bus->lock_write);
 	return (EXIT_SUCCESS);
 }

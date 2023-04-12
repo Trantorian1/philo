@@ -6,7 +6,7 @@
 /*   By: emcnab <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/10 15:20:52 by emcnab            #+#    #+#             */
-/*   Updated: 2023/04/11 10:42:18 by emcnab           ###   ########.fr       */
+/*   Updated: 2023/04/12 10:36:09 by emcnab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ void	*table_destroy(void)
 		free(table->guests);
 	if (table->forks)
 		destroy_forks(table);
-	error_bus_destroy();
 	free(table);
 	return (NULL);
 }

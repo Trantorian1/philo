@@ -6,7 +6,7 @@
 /*   By: emcnab <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 18:08:42 by emcnab            #+#    #+#             */
-/*   Updated: 2023/04/11 10:18:42 by emcnab           ###   ########.fr       */
+/*   Updated: 2023/04/11 19:04:14 by emcnab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define S_PHILO_H
 
 # include <pthread.h>
-#include <stdint.h>
+# include <stddef.h>
 
 # include "e_philo_state.h"
 # include "s_promise.h"

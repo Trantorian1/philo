@@ -6,7 +6,7 @@
 /*   By: emcnab <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 11:45:48 by emcnab            #+#    #+#             */
-/*   Updated: 2023/04/11 19:01:14 by emcnab           ###   ########.fr       */
+/*   Updated: 2023/04/12 10:54:47 by emcnab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static void	message_bus_flush_iterative(
 	t_s_message	*cursor;
 
 	cursor = tail;
-	while (cursor <= head)
+	while (cursor < head)
 	{
 		message_print(cursor);
 		cursor++;
@@ -87,6 +87,8 @@ int32_t	message_bus_flush(void)
 	t_s_message		*head;
 
 	message_bus = message_bus_get();
+	if (message_bus->size == 0)
+		return (EXIT_SUCCESS);
 	tail = message_bus_get_tail();
 	head = message_bus_get_head();
 	if (tail < head)

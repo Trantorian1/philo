@@ -6,7 +6,7 @@
 /*   By: emcnab <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 18:20:18 by emcnab            #+#    #+#             */
-/*   Updated: 2023/04/11 14:20:25 by emcnab           ###   ########.fr       */
+/*   Updated: 2023/04/12 10:35:56 by emcnab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,6 @@ int32_t	philo_init(
 	philo->state = STATE_WAITING;
 	philo->runner = runner;
 	if (pthread_create(&philo->thread, NULL, &loop, philo) != EXIT_SUCCESS)
-		return ((void)error_bus_set(ERROR_CREATE), EXIT_FAILURE);
+		return (EXIT_FAILURE);
 	return (EXIT_SUCCESS);
 }

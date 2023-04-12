@@ -1,33 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error_bus_set.c                                    :+:      :+:    :+:   */
+/*   parse_args.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: emcnab <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/06 18:35:57 by emcnab            #+#    #+#             */
-/*   Updated: 2023/04/10 09:44:32 by emcnab           ###   ########.fr       */
+/*   Created: 2023/04/12 10:16:40 by emcnab            #+#    #+#             */
+/*   Updated: 2023/04/12 10:17:38 by emcnab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "error_bus_set.h"
+#include "parse_args.h"
 
-#include "error_bus.h"
-
-#include <pthread.h>
 #include <stdlib.h>
-#include <stdbool.h>
 
-void	error_bus_set(t_e_error_code error_code)
+int32_t	parse_args(int argc, char **argv)
 {
-	t_s_error_bus	*bus;
-	bool			inval_code;
-
-	bus = error_bus();
-	inval_code = ((error_code == E_ERRORS_SIZE) || (error_code == ERROR_NONE));
-	if (bus == NULL || inval_code)
-		return ;
-	pthread_mutex_lock(&bus->lock);
-	bus->errors[error_code]++;
-	pthread_mutex_unlock(&bus->lock);
+	(void)argv;
+	if (argc < 2)
+		return (EXIT_FAILURE);
+	return (EXIT_SUCCESS);
 }
