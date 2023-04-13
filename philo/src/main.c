@@ -6,11 +6,12 @@
 /*   By: emcnab <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/10 18:24:13 by emcnab            #+#    #+#             */
-/*   Updated: 2023/04/12 10:55:14 by emcnab           ###   ########.fr       */
+/*   Updated: 2023/04/13 10:59:28 by emcnab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
+#include <sys/types.h>
 #include <unistd.h>
 
 #include "d_error_simulation.h"
@@ -66,11 +67,13 @@ static int32_t	simulation_start(t_s_table *table, int argc)
 // WARNING: remember to call message_bus_flush once all threads have been joined
 // TODO: for perfomance reasons, should only call table_join once all philo
 // threads have finished executing
-int	main(int argc, char **argv)
+int	main(int32_t argc, char **argv)
 {
+	t_s_args	*args;
 	t_s_table	*table;
 
-	if (parse_args(argc, argv))
+	args = parse_args(argc, argv);
+	if (args == NULL)
 		return (error_throw(ERROR_ARGS_INVALID));
 	table = table_get();
 	if (table == NULL)

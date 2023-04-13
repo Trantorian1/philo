@@ -1,21 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_args.h                                       :+:      :+:    :+:   */
+/*   s_args.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By:  <>                                        +#+  +:+       +#+        */
+/*   By: emcnab <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/12 15:23:35 by                   #+#    #+#             */
-/*   Updated: 2023/04/12 15:23:35 by                  ###   ########.fr       */
+/*   Created: 2023/04/12 14:03:02 by emcnab            #+#    #+#             */
+/*   Updated: 2023/04/12 15:08:40 by emcnab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PARSE_ARGS_H
-# define PARSE_ARGS_H
+#ifndef S_ARGS_H
+# define S_ARGS_H
 
 # include <stdint.h>
-# include "s_args.h"
 
-t_s_args	*parse_args(int32_t argc, char **argv);
+typedef struct s_args
+{
+	int32_t	philo_count;
+	int32_t	time_death;
+	int32_t	time_eat;
+	int32_t	time_sleep;
+	int32_t	meal_target;
+}	t_s_args;
 
 #endif

@@ -1,3 +1,6 @@
 # ignores all build artifacts
 build/**
 bin/**
+
+# ignores vscode config files
+.vscode/**

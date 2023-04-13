@@ -1,21 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_args.h                                       :+:      :+:    :+:   */
+/*   parse_zeros.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By:  <>                                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/12 15:23:35 by                   #+#    #+#             */
-/*   Updated: 2023/04/12 15:23:35 by                  ###   ########.fr       */
+/*   Created: 2023/04/12 11:42:27 by                   #+#    #+#             */
+/*   Updated: 2023/04/12 11:42:27 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PARSE_ARGS_H
-# define PARSE_ARGS_H
+#ifndef PARSE_ZEROS_H
+# define PARSE_ZEROS_H
 
 # include <stdint.h>
-# include "s_args.h"
 
-t_s_args	*parse_args(int32_t argc, char **argv);
+int32_t	parse_zeros(char **str_int);
 
 #endif

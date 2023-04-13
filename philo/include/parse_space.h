@@ -1,21 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_args.h                                       :+:      :+:    :+:   */
+/*   parse_space.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By:  <>                                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/12 15:23:35 by                   #+#    #+#             */
-/*   Updated: 2023/04/12 15:23:35 by                  ###   ########.fr       */
+/*   Created: 2023/04/12 11:29:02 by                   #+#    #+#             */
+/*   Updated: 2023/04/12 11:29:02 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PARSE_ARGS_H
-# define PARSE_ARGS_H
+#ifndef PARSE_SPACE_H
+# define PARSE_SPACE_H
 
 # include <stdint.h>
-# include "s_args.h"
 
-t_s_args	*parse_args(int32_t argc, char **argv);
+int32_t	parse_space(char **str_int);
 
 #endif

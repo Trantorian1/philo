@@ -1,21 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_args.h                                       :+:      :+:    :+:   */
+/*   parse_zeros.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By:  <>                                        +#+  +:+       +#+        */
+/*   By: emcnab <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/12 15:23:35 by                   #+#    #+#             */
-/*   Updated: 2023/04/12 15:23:35 by                  ###   ########.fr       */
+/*   Created: 2023/04/12 11:39:14 by emcnab            #+#    #+#             */
+/*   Updated: 2023/04/12 11:42:34 by emcnab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PARSE_ARGS_H
-# define PARSE_ARGS_H
+#include "parse_zeros.h"
 
-# include <stdint.h>
-# include "s_args.h"
+#include <stdlib.h>
 
-t_s_args	*parse_args(int32_t argc, char **argv);
-
-#endif
+int32_t	parse_zeros(char **str_int)
+{
+	if (str_int == NULL || *str_int == NULL)
+		return (EXIT_FAILURE);
+	while (**str_int != '\0' && **str_int == '0')
+		(*str_int)++;
+	return (EXIT_SUCCESS);
+}
