@@ -6,7 +6,7 @@
 /*   By: emcnab <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/10 18:24:13 by emcnab            #+#    #+#             */
-/*   Updated: 2023/04/13 10:59:28 by emcnab           ###   ########.fr       */
+/*   Updated: 2023/04/13 11:05:26 by emcnab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,9 @@ static void	simulation_end(t_s_table *table)
 }
 
 // WARNING: remember to ALLWAYS call table_init and message_bus_init
-static int32_t	simulation_start(t_s_table *table, int argc)
+static int32_t	simulation_start(t_s_table *table, int32_t philo_count)
 {
-	if (table_init((size_t)(argc - 1), &runner) == EXIT_FAILURE)
+	if (table_init(philo_count, &runner) == EXIT_FAILURE)
 	{
 		simulation_end(table);
 		return (error_throw(ERROR_TABLE_INIT));
@@ -78,7 +78,7 @@ int	main(int32_t argc, char **argv)
 	table = table_get();
 	if (table == NULL)
 		return (error_throw(ERROR_TABLE_GET));
-	if (simulation_start(table, argc) == EXIT_FAILURE)
+	if (simulation_start(table, args->philo_count) == EXIT_FAILURE)
 		return (error_throw(ERROR_SIMULATION_START));
 	table_join();
 	simulation_end(table);

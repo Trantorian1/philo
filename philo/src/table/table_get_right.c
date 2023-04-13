@@ -6,13 +6,13 @@
 /*   By: emcnab <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/10 17:06:09 by emcnab            #+#    #+#             */
-/*   Updated: 2023/04/10 17:56:07 by emcnab           ###   ########.fr       */
+/*   Updated: 2023/04/13 11:10:46 by emcnab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "table_get_right.h"
 
-t_s_philo	*tables_get_right(t_s_table *table, size_t seat)
+t_s_philo	*tables_get_right(t_s_table *table, int32_t seat)
 {
 	if (table == NULL || seat >= table->size)
 		return (NULL);

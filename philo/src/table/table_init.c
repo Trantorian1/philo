@@ -6,7 +6,7 @@
 /*   By: emcnab <emcnab@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/10 14:36:45 by emcnab            #+#    #+#             */
-/*   Updated: 2023/04/12 10:44:50 by emcnab           ###   ########.fr       */
+/*   Updated: 2023/04/13 11:14:21 by emcnab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,15 +26,15 @@
 
 static int32_t	init_guests(t_s_table *table, t_f_runner runner)
 {
-	size_t		index;
-	int32_t		error_code;
+	int32_t	index;
+	int32_t	error_code;
 
 	if (table == NULL || runner == NULL)
 		return (EXIT_FAILURE);
 	table->guests = malloc(sizeof(*table->guests));
 	if (table->guests == NULL)
 		return (EXIT_FAILURE);
-	index = (size_t)(-1);
+	index = -1;
 	while (++index < table->size)
 	{
 		error_code = philo_init(&table->guests[index], index, runner);
@@ -44,13 +44,13 @@ static int32_t	init_guests(t_s_table *table, t_f_runner runner)
 	return (EXIT_SUCCESS);
 }
 
-static int32_t	deinit_cuttlery(t_s_table *table, size_t target)
+static int32_t	deinit_cuttlery(t_s_table *table, int32_t target)
 {
-	size_t	index;
+	int32_t	index;
 
 	if (table == NULL || target >= table->size)
 		return (EXIT_FAILURE);
-	index = (size_t)(-1);
+	index = -1;
 	while (++index < target)
 		pthread_mutex_destroy(&table->forks[index]);
 	return (EXIT_FAILURE);
@@ -58,14 +58,14 @@ static int32_t	deinit_cuttlery(t_s_table *table, size_t target)
 
 static int32_t	init_cuttlery(t_s_table *table)
 {
-	size_t	index;
+	int32_t	index;
 
 	if (table == NULL)
 		return (EXIT_FAILURE);
-	table->forks = malloc(table->size * sizeof(*table->forks));
+	table->forks = malloc((size_t)table->size * sizeof(*table->forks));
 	if (table->forks == NULL)
 		return (EXIT_FAILURE);
-	index = (size_t)(-1);
+	index = -1;
 	while (++index < table->size)
 		if (pthread_mutex_init(&table->forks[index], NULL) != EXIT_SUCCESS)
 			return (deinit_cuttlery(table, index));
@@ -74,11 +74,11 @@ static int32_t	init_cuttlery(t_s_table *table)
 
 static void	distribute_cuttlery(t_s_table *table)
 {
-	size_t		index;
+	int32_t		index;
 	t_s_philo	*guest_left;
 	t_s_philo	*guest_curr;
 
-	index = (size_t)(-1);
+	index = -1;
 	while (++index < table->size)
 	{
 		guest_left = table_get_left(table, index);
@@ -88,7 +88,7 @@ static void	distribute_cuttlery(t_s_table *table)
 	}
 }
 
-int32_t	table_init(size_t size, t_f_runner runner)
+int32_t	table_init(int32_t size, t_f_runner runner)
 {
 	t_s_table	*table;
 

@@ -6,7 +6,7 @@
 /*   By: emcnab <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/10 15:20:52 by emcnab            #+#    #+#             */
-/*   Updated: 2023/04/12 10:36:09 by emcnab           ###   ########.fr       */
+/*   Updated: 2023/04/13 11:11:34 by emcnab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@
 
 static void	destroy_forks(t_s_table *table)
 {
-	size_t	index;
+	int32_t	index;
 
-	index = (size_t)(-1);
+	index = -1;
 	while (++index < table->size)
 		pthread_mutex_destroy(&table->forks[index]);
 	free(table->forks);

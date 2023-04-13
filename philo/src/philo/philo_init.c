@@ -6,7 +6,7 @@
 /*   By: emcnab <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 18:20:18 by emcnab            #+#    #+#             */
-/*   Updated: 2023/04/12 10:35:56 by emcnab           ###   ########.fr       */
+/*   Updated: 2023/04/13 11:24:49 by emcnab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,7 @@ static void	*loop(void *data)
 	return (philo->runner(philo));
 }
 
-int32_t	philo_init(
-	t_s_philo *philo,
-	size_t id,
-	t_f_runner *runner)
+int32_t	philo_init(t_s_philo *philo, int32_t id, t_f_runner *runner)
 {
 	if (philo == NULL || runner == NULL)
 		return (EXIT_FAILURE);

@@ -6,7 +6,7 @@
 /*   By: emcnab <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/10 18:47:29 by emcnab            #+#    #+#             */
-/*   Updated: 2023/04/10 18:54:37 by emcnab           ###   ########.fr       */
+/*   Updated: 2023/04/13 11:13:34 by emcnab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,10 @@
 void	table_join(void)
 {
 	t_s_table	*table;
-	size_t		index;
+	int32_t		index;
 
 	table = table_get();
-	index = (size_t)(-1);
+	index = -1;
 	while (++index < table->size)
 		pthread_join(table->guests[index].thread, NULL);
 }

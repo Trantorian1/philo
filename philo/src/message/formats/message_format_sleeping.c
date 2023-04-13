@@ -6,7 +6,7 @@
 /*   By: emcnab <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 13:15:39 by emcnab            #+#    #+#             */
-/*   Updated: 2023/04/11 19:18:01 by emcnab           ###   ########.fr       */
+/*   Updated: 2023/04/13 11:47:01 by emcnab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,8 @@
 
 #include "libft.h"
 
-// BUG: shouls use another function that ft_putnbr_fd so as to correctly handle
-// the entirety of size_t range
 void	message_format_sleeping(t_s_message *message)
 {
-	ft_putnbr_fd((int32_t)message->id, STDOUT_FILENO);
+	ft_putnbr_fd(message->id, STDOUT_FILENO);
 	ft_putendl_fd(" is sleeping", STDOUT_FILENO);
 }

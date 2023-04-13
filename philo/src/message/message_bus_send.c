@@ -6,7 +6,7 @@
 /*   By: emcnab <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 11:34:37 by emcnab            #+#    #+#             */
-/*   Updated: 2023/04/12 10:52:31 by emcnab           ###   ########.fr       */
+/*   Updated: 2023/04/13 11:26:31 by emcnab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ static void	message_bus_head_incr(t_s_message_bus *message_bus)
  *
  * @return (int32_t): EXIT_SUCCESS.
  */
-int32_t	message_bus_send(size_t id, t_e_philo_state state)
+int32_t	message_bus_send(int32_t id, t_e_philo_state state)
 {
 	t_s_message_bus	*message_bus;
 	t_s_message		*tail;

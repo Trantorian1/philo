@@ -5,19 +5,18 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By:  <>                                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/10 15:19:49 by                   #+#    #+#             */
-/*   Updated: 2023/04/11 19:23:23 by emcnab           ###   ########.fr       */
+/*   Created: 2023/04/13 11:06:10 by                   #+#    #+#             */
+/*   Updated: 2023/04/13 11:42:19 by emcnab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef TABLE_CREATE_H
-# define TABLE_CREATE_H
+#ifndef TABLE_INIT_H
+# define TABLE_INIT_H
 
-# include <stddef.h>
 # include <stdint.h>
 
-# include "s_table.h"
+# include "f_runner.h"
 
-int32_t	table_init(size_t size, t_f_runner runner);
+int32_t	table_init(int32_t size, t_f_runner runner);
 
 #endif
