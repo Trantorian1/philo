@@ -1,27 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   s_args.h                                           :+:      :+:    :+:   */
+/*   fits_in_uint32.h                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emcnab <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By:  <>                                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/12 14:03:02 by emcnab            #+#    #+#             */
-/*   Updated: 2023/04/13 17:29:28 by emcnab           ###   ########.fr       */
+/*   Created: 2023/04/13 17:16:23 by                   #+#    #+#             */
+/*   Updated: 2023/04/13 17:16:23 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef S_ARGS_H
-# define S_ARGS_H
+#ifndef FITS_IN_UINT32_H
+# define FITS_IN_UINT32_H
 
 # include <stdint.h>
 
-typedef struct s_args
-{
-	int32_t		philo_count;
-	uint64_t	time_death;
-	uint64_t	time_eat;
-	uint64_t	time_sleep;
-	int64_t		meal_target;
-}	t_s_args;
+int32_t	fits_in_uint32(char *str_uint, char **endptr, int8_t sign);
 
 #endif

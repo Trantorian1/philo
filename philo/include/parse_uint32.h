@@ -1,27 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   s_args.h                                           :+:      :+:    :+:   */
+/*   parse_uint32.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emcnab <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By:  <>                                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/12 14:03:02 by emcnab            #+#    #+#             */
-/*   Updated: 2023/04/13 17:29:28 by emcnab           ###   ########.fr       */
+/*   Created: 2023/04/13 16:50:45 by                   #+#    #+#             */
+/*   Updated: 2023/04/13 16:50:45 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef S_ARGS_H
-# define S_ARGS_H
+#ifndef PARSE_UINT32_H
+# define PARSE_UINT32_H
 
 # include <stdint.h>
 
-typedef struct s_args
-{
-	int32_t		philo_count;
-	uint64_t	time_death;
-	uint64_t	time_eat;
-	uint64_t	time_sleep;
-	int64_t		meal_target;
-}	t_s_args;
+uint32_t	parse_uint32(char *str_int, char **endptr);
 
 #endif

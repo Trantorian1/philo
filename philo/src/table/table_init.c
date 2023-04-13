@@ -6,7 +6,7 @@
 /*   By: emcnab <emcnab@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/10 14:36:45 by emcnab            #+#    #+#             */
-/*   Updated: 2023/04/13 13:14:10 by emcnab           ###   ########.fr       */
+/*   Updated: 2023/04/13 17:34:29 by emcnab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,14 +23,13 @@
 #include "table_destroy.h"
 #include "table_get_left.h"
 #include "table.h"
+#include "libft.h"
 
 static int32_t	init_guests(t_s_table *table, t_f_runner runner)
 {
 	int32_t	index;
 	int32_t	error_code;
 
-	if (table == NULL || runner == NULL)
-		return (EXIT_FAILURE);
 	table->guests = malloc((size_t)table->size * sizeof(*table->guests));
 	if (table->guests == NULL)
 		return (EXIT_FAILURE);
@@ -44,31 +43,23 @@ static int32_t	init_guests(t_s_table *table, t_f_runner runner)
 	return (EXIT_SUCCESS);
 }
 
-static int32_t	deinit_cuttlery(t_s_table *table, int32_t target)
-{
-	int32_t	index;
-
-	if (table == NULL || target >= table->size)
-		return (EXIT_FAILURE);
-	index = -1;
-	while (++index < target)
-		pthread_mutex_destroy(&table->forks[index]);
-	return (EXIT_FAILURE);
-}
-
 static int32_t	init_cuttlery(t_s_table *table)
 {
 	int32_t	index;
 
-	if (table == NULL)
-		return (EXIT_FAILURE);
 	table->forks = malloc((size_t)table->size * sizeof(*table->forks));
 	if (table->forks == NULL)
 		return (EXIT_FAILURE);
 	index = -1;
 	while (++index < table->size)
+	{
 		if (pthread_mutex_init(&table->forks[index], NULL) != EXIT_SUCCESS)
-			return (deinit_cuttlery(table, index));
+		{
+			while (--index >= 0)
+				pthread_mutex_destroy(&table->forks[index]);
+			return (EXIT_FAILURE);
+		}
+	}
 	return (EXIT_SUCCESS);
 }
 
@@ -88,6 +79,16 @@ static void	distribute_cuttlery(t_s_table *table)
 	}
 }
 
+// WARNING: remember to replace this calloc by a ft_calloc !!! (This is so dumb)
+static int32_t	setup_timers(t_s_table *table)
+{
+	table->timers = calloc((size_t)table->size, sizeof(*table->timers));
+	if (table->timers == NULL)
+		return (EXIT_FAILURE);
+	table->next_in_line = 0;
+	return (EXIT_SUCCESS);
+}
+
 int32_t	table_init(int32_t size, t_f_runner runner)
 {
 	t_s_table	*table;
@@ -100,6 +101,8 @@ int32_t	table_init(int32_t size, t_f_runner runner)
 	if (init_guests(table, runner) == EXIT_FAILURE)
 		return ((void)table_destroy(), EXIT_FAILURE);
 	if (init_cuttlery(table) == EXIT_FAILURE)
+		return ((void)table_destroy(), EXIT_FAILURE);
+	if (setup_timers(table) == EXIT_FAILURE)
 		return ((void)table_destroy(), EXIT_FAILURE);
 	distribute_cuttlery(table);
 	return (EXIT_SUCCESS);
