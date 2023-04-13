@@ -6,7 +6,7 @@
 /*   By: emcnab <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 18:20:18 by emcnab            #+#    #+#             */
-/*   Updated: 2023/04/13 11:24:49 by emcnab           ###   ########.fr       */
+/*   Updated: 2023/04/13 11:50:47 by emcnab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,6 @@
 
 #include "e_error_code.h"
 #include "e_game_state.h"
-#include "error_bus.h"
-#include "error_bus_set.h"
-#include "s_error_bus.h"
 #include "table.h"
 
 static void	*loop(void *data)

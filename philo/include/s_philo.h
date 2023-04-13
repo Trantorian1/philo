@@ -6,7 +6,7 @@
 /*   By: emcnab <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 18:08:42 by emcnab            #+#    #+#             */
-/*   Updated: 2023/04/13 11:15:41 by emcnab           ###   ########.fr       */
+/*   Updated: 2023/04/13 11:50:35 by emcnab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@
 # include <stdint.h>
 
 # include "e_philo_state.h"
-# include "s_promise.h"
 # include "f_runner.h"
 
 typedef struct s_philo
