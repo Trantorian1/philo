@@ -6,7 +6,7 @@
 /*   By: emcnab <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/10 18:24:13 by emcnab            #+#    #+#             */
-/*   Updated: 2023/04/13 11:05:26 by emcnab           ###   ########.fr       */
+/*   Updated: 2023/04/13 19:27:45 by emcnab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 
 #include "d_error_simulation.h"
 #include "e_philo_state.h"
+#include "error_args.h"
 #include "error_throw.h"
 #include "message_bus_flush.h"
 #include "parse_args.h"
@@ -74,7 +75,7 @@ int	main(int32_t argc, char **argv)
 
 	args = parse_args(argc, argv);
 	if (args == NULL)
-		return (error_throw(ERROR_ARGS_INVALID));
+		return (error_args());
 	table = table_get();
 	if (table == NULL)
 		return (error_throw(ERROR_TABLE_GET));
