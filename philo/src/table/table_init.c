@@ -6,7 +6,7 @@
 /*   By: emcnab <emcnab@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/10 14:36:45 by emcnab            #+#    #+#             */
-/*   Updated: 2023/04/13 11:14:21 by emcnab           ###   ########.fr       */
+/*   Updated: 2023/04/13 13:14:10 by emcnab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static int32_t	init_guests(t_s_table *table, t_f_runner runner)
 
 	if (table == NULL || runner == NULL)
 		return (EXIT_FAILURE);
-	table->guests = malloc(sizeof(*table->guests));
+	table->guests = malloc((size_t)table->size * sizeof(*table->guests));
 	if (table->guests == NULL)
 		return (EXIT_FAILURE);
 	index = -1;
