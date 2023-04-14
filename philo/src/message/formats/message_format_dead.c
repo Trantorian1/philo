@@ -1,31 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   s_table.h                                          :+:      :+:    :+:   */
+/*   message_format_dead.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: emcnab <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/06 18:15:27 by emcnab            #+#    #+#             */
-/*   Updated: 2023/04/14 16:50:25 by emcnab           ###   ########.fr       */
+/*   Created: 2023/04/14 18:43:53 by emcnab            #+#    #+#             */
+/*   Updated: 2023/04/14 18:45:24 by emcnab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef S_TABLE_H
-# define S_TABLE_H
+#include "message_format_dead.h"
 
-# include <stdint.h>
+#include "libft.h"
 
-# include "s_philo.h"
-# include "s_args.h"
-# include "e_game_state.h"
-
-typedef struct s_table
+void	message_format_dead(t_s_message *message)
 {
-	int32_t			size;
-	t_e_game_state	game_state;
-	t_s_args		*args;
-	t_s_philo		*guests;
-	pthread_mutex_t	*forks;
-}	t_s_table;
-
-#endif // !DEBUG
+	ft_putnbr_fd(message->id, STDOUT_FILENO);
+	ft_putendl_fd(" died", STDOUT_FILENO);
+}

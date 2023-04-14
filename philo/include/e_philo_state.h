@@ -6,7 +6,7 @@
 /*   By: emcnab <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 18:17:18 by emcnab            #+#    #+#             */
-/*   Updated: 2023/04/11 13:01:35 by emcnab           ###   ########.fr       */
+/*   Updated: 2023/04/14 16:56:20 by emcnab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ typedef enum e_philo_state
 	STATE_EATING,
 	STATE_SLEEPING,
 	STATE_THINKING,
+	STATE_DEAD,
+	STATE_ERROR,
 	E_PHILO_STATE_SIZE
 }	t_e_philo_state;
 

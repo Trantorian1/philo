@@ -6,7 +6,7 @@
 /*   By: emcnab <emcnab@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/10 14:36:45 by emcnab            #+#    #+#             */
-/*   Updated: 2023/04/14 10:10:12 by emcnab           ###   ########.fr       */
+/*   Updated: 2023/04/14 16:51:04 by emcnab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ static void	distribute_cuttlery(t_s_table *table)
 	}
 }
 
-int32_t	table_init(int32_t size, t_f_runner runner)
+int32_t	table_init(t_s_args *args, t_f_runner runner)
 {
 	t_s_table	*table;
 
@@ -87,7 +87,8 @@ int32_t	table_init(int32_t size, t_f_runner runner)
 	if (table == NULL)
 		return (EXIT_FAILURE);
 	table->game_state = IDLE;
-	table->size = size;
+	table->size = args->philo_count;
+	table->args = args;
 	if (init_guests(table, runner) == EXIT_FAILURE)
 		return ((void)table_destroy(), EXIT_FAILURE);
 	if (init_cuttlery(table) == EXIT_FAILURE)

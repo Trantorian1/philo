@@ -1,23 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   table_init.h                                       :+:      :+:    :+:   */
+/*   message_format_dead.h                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By:  <>                                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/14 16:42:13 by                   #+#    #+#             */
-/*   Updated: 2023/04/14 16:45:24 by emcnab           ###   ########.fr       */
+/*   Created: 2023/04/14 18:44:26 by                   #+#    #+#             */
+/*   Updated: 2023/04/14 18:44:26 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef TABLE_INIT_H
-# define TABLE_INIT_H
+#ifndef MESSAGE_FORMAT_DEAD_H
+# define MESSAGE_FORMAT_DEAD_H
 
-# include <stdint.h>
+# include "s_message.h"
 
-#include "f_runner.h"
-# include "s_args.h"
-
-int32_t	table_init(t_s_args *args, t_f_runner runner);
+void	message_format_dead(t_s_message *message);
 
 #endif

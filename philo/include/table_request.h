@@ -1,23 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   table_init.h                                       :+:      :+:    :+:   */
+/*   table_request.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By:  <>                                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/14 16:42:13 by                   #+#    #+#             */
-/*   Updated: 2023/04/14 16:45:24 by emcnab           ###   ########.fr       */
+/*   Created: 2023/04/14 13:29:00 by                   #+#    #+#             */
+/*   Updated: 2023/04/14 13:29:00 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef TABLE_INIT_H
-# define TABLE_INIT_H
+#ifndef TABLE_REQUEST_H
+# define TABLE_REQUEST_H
 
-# include <stdint.h>
+# include <stdbool.h>
+# include "s_philo.h"
 
-#include "f_runner.h"
-# include "s_args.h"
-
-int32_t	table_init(t_s_args *args, t_f_runner runner);
+bool	table_request(t_s_philo *philo);
 
 #endif

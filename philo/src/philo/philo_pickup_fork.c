@@ -1,31 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   s_table.h                                          :+:      :+:    :+:   */
+/*   philo_pickup_fork.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: emcnab <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/06 18:15:27 by emcnab            #+#    #+#             */
-/*   Updated: 2023/04/14 16:50:25 by emcnab           ###   ########.fr       */
+/*   Created: 2023/04/14 15:04:25 by emcnab            #+#    #+#             */
+/*   Updated: 2023/04/14 18:31:23 by emcnab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef S_TABLE_H
-# define S_TABLE_H
+#include "philo_pickup_fork.h"
 
-# include <stdint.h>
+#include <pthread.h>
+#include <stdlib.h>
 
-# include "s_philo.h"
-# include "s_args.h"
-# include "e_game_state.h"
+#include "e_philo_state.h"
+#include "message_bus_send.h"
+#include <philo_set_state.h>
 
-typedef struct s_table
+int32_t	philo_pickup_fork(t_s_philo *philo)
 {
-	int32_t			size;
-	t_e_game_state	game_state;
-	t_s_args		*args;
-	t_s_philo		*guests;
-	pthread_mutex_t	*forks;
-}	t_s_table;
-
-#endif // !DEBUG
+	if (philo == NULL)
+		return (EXIT_FAILURE);
+	pthread_mutex_lock(&philo->fork_left);
+	pthread_mutex_lock(&philo->fork_right);
+	return (philo_set_state(philo, STATE_EATING));
+}

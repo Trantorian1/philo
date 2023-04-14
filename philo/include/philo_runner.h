@@ -1,23 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   table_init.h                                       :+:      :+:    :+:   */
+/*   philo_runner.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By:  <>                                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/14 16:42:13 by                   #+#    #+#             */
-/*   Updated: 2023/04/14 16:45:24 by emcnab           ###   ########.fr       */
+/*   Created: 2023/04/14 14:55:00 by                   #+#    #+#             */
+/*   Updated: 2023/04/14 14:55:00 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef TABLE_INIT_H
-# define TABLE_INIT_H
+#ifndef PHILO_RUNNER_H
+# define PHILO_RUNNER_H
 
-# include <stdint.h>
-
-#include "f_runner.h"
-# include "s_args.h"
-
-int32_t	table_init(t_s_args *args, t_f_runner runner);
+void	*philo_runner(void *data);
 
 #endif

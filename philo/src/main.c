@@ -6,7 +6,7 @@
 /*   By: emcnab <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/10 18:24:13 by emcnab            #+#    #+#             */
-/*   Updated: 2023/04/14 10:36:03 by emcnab           ###   ########.fr       */
+/*   Updated: 2023/04/14 16:45:48 by emcnab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ static void	simulation_end(void)
 // WARNING: remember to ALLWAYS call table_init and message_bus_init
 static int32_t	simulation_start(t_s_args *args)
 {
-	if (table_init(args->philo_count, &runner) == EXIT_FAILURE)
+	if (table_init(args, &runner) == EXIT_FAILURE)
 	{
 		simulation_end();
 		return (error_throw(ERROR_TABLE_INIT));

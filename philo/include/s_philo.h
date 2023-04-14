@@ -6,7 +6,7 @@
 /*   By: emcnab <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 18:08:42 by emcnab            #+#    #+#             */
-/*   Updated: 2023/04/14 10:17:09 by emcnab           ###   ########.fr       */
+/*   Updated: 2023/04/14 16:50:32 by emcnab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 typedef struct s_philo
 {
 	int32_t			id;
-	int32_t			ticket;
+	uint64_t		time_last_meal;
 	t_e_philo_state	state;
 	pthread_mutex_t	fork_left;
 	pthread_mutex_t	fork_right;

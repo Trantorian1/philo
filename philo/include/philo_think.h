@@ -1,31 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   s_table.h                                          :+:      :+:    :+:   */
+/*   philo_think.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emcnab <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By:  <>                                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/06 18:15:27 by emcnab            #+#    #+#             */
-/*   Updated: 2023/04/14 16:50:25 by emcnab           ###   ########.fr       */
+/*   Created: 2023/04/14 18:36:09 by                   #+#    #+#             */
+/*   Updated: 2023/04/14 18:36:09 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef S_TABLE_H
-# define S_TABLE_H
+#ifndef PHILO_THINK_H
+# define PHILO_THINK_H
 
 # include <stdint.h>
-
 # include "s_philo.h"
-# include "s_args.h"
-# include "e_game_state.h"
 
-typedef struct s_table
-{
-	int32_t			size;
-	t_e_game_state	game_state;
-	t_s_args		*args;
-	t_s_philo		*guests;
-	pthread_mutex_t	*forks;
-}	t_s_table;
+int32_t	philo_think(t_s_philo *philo);
 
-#endif // !DEBUG
+#endif
