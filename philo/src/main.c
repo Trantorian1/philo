@@ -6,7 +6,7 @@
 /*   By: emcnab <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/10 18:24:13 by emcnab            #+#    #+#             */
-/*   Updated: 2023/04/13 19:27:45 by emcnab           ###   ########.fr       */
+/*   Updated: 2023/04/14 10:36:03 by emcnab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 #include "error_args.h"
 #include "error_throw.h"
 #include "message_bus_flush.h"
+#include "monitor_init.h"
 #include "parse_args.h"
 #include "s_table.h"
 #include "s_message_bus.h"
@@ -41,27 +42,32 @@ static void	*runner(void *data)
 	return (NULL);
 }
 
-static void	simulation_end(t_s_table *table)
+static void	simulation_end(void)
 {
-	table->game_state = END;
+	table_get()->game_state = END;
 	message_bus_flush();
 	table_destroy();
 }
 
 // WARNING: remember to ALLWAYS call table_init and message_bus_init
-static int32_t	simulation_start(t_s_table *table, int32_t philo_count)
+static int32_t	simulation_start(t_s_args *args)
 {
-	if (table_init(philo_count, &runner) == EXIT_FAILURE)
+	if (table_init(args->philo_count, &runner) == EXIT_FAILURE)
 	{
-		simulation_end(table);
+		simulation_end();
 		return (error_throw(ERROR_TABLE_INIT));
 	}
 	if (message_bus_init() == EXIT_FAILURE)
 	{
-		simulation_end(table);
+		simulation_end();
 		return (error_throw(ERROR_MESSAGE_BUS_INIT));
 	}
-	table->game_state = SYNCHRONISED;
+	if (monitor_init(args) == EXIT_FAILURE)
+	{
+		simulation_end();
+		return (error_throw(ERROR_MONITOR_INIT));
+	}
+	table_get()->game_state = SYNCHRONISED;
 	return (EXIT_SUCCESS);
 }
 
@@ -71,17 +77,13 @@ static int32_t	simulation_start(t_s_table *table, int32_t philo_count)
 int	main(int32_t argc, char **argv)
 {
 	t_s_args	*args;
-	t_s_table	*table;
 
 	args = parse_args(argc, argv);
 	if (args == NULL)
 		return (error_args());
-	table = table_get();
-	if (table == NULL)
-		return (error_throw(ERROR_TABLE_GET));
-	if (simulation_start(table, args->philo_count) == EXIT_FAILURE)
+	if (simulation_start(args) == EXIT_FAILURE)
 		return (error_throw(ERROR_SIMULATION_START));
 	table_join();
-	simulation_end(table);
+	simulation_end();
 	return (EXIT_SUCCESS);
 }

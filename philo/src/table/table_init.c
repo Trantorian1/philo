@@ -6,7 +6,7 @@
 /*   By: emcnab <emcnab@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/10 14:36:45 by emcnab            #+#    #+#             */
-/*   Updated: 2023/04/13 17:34:29 by emcnab           ###   ########.fr       */
+/*   Updated: 2023/04/14 10:10:12 by emcnab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,16 +79,6 @@ static void	distribute_cuttlery(t_s_table *table)
 	}
 }
 
-// WARNING: remember to replace this calloc by a ft_calloc !!! (This is so dumb)
-static int32_t	setup_timers(t_s_table *table)
-{
-	table->timers = calloc((size_t)table->size, sizeof(*table->timers));
-	if (table->timers == NULL)
-		return (EXIT_FAILURE);
-	table->next_in_line = 0;
-	return (EXIT_SUCCESS);
-}
-
 int32_t	table_init(int32_t size, t_f_runner runner)
 {
 	t_s_table	*table;
@@ -101,8 +91,6 @@ int32_t	table_init(int32_t size, t_f_runner runner)
 	if (init_guests(table, runner) == EXIT_FAILURE)
 		return ((void)table_destroy(), EXIT_FAILURE);
 	if (init_cuttlery(table) == EXIT_FAILURE)
-		return ((void)table_destroy(), EXIT_FAILURE);
-	if (setup_timers(table) == EXIT_FAILURE)
 		return ((void)table_destroy(), EXIT_FAILURE);
 	distribute_cuttlery(table);
 	return (EXIT_SUCCESS);

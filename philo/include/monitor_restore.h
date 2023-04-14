@@ -1,22 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   table.c                                            :+:      :+:    :+:   */
+/*   monitor_restore.h                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emcnab <emcnab@student.42.fr>              +#+  +:+       +#+        */
+/*   By:  <>                                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/10 18:27:04 by emcnab            #+#    #+#             */
-/*   Updated: 2023/04/14 10:28:04 by emcnab           ###   ########.fr       */
+/*   Created: 2023/04/14 11:50:57 by                   #+#    #+#             */
+/*   Updated: 2023/04/14 11:50:57 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "table.h"
+#ifndef MONITOR_RESTORE_H
+# define MONITOR_RESTORE_H
 
-#include <stdlib.h>
+# include "s_philo.h"
 
-t_s_table	*table_get(void)
-{
-	static t_s_table	table = {.size = 0};
+void	monitor_restore(t_s_philo *philo);
 
-	return (&table);
-}
+#endif

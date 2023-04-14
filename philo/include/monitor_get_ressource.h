@@ -1,22 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   table.c                                            :+:      :+:    :+:   */
+/*   monitor_get_ressource.h                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emcnab <emcnab@student.42.fr>              +#+  +:+       +#+        */
+/*   By:  <>                                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/10 18:27:04 by emcnab            #+#    #+#             */
-/*   Updated: 2023/04/14 10:28:04 by emcnab           ###   ########.fr       */
+/*   Created: 2023/04/14 11:04:45 by                   #+#    #+#             */
+/*   Updated: 2023/04/14 11:04:45 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "table.h"
+#ifndef MONITOR_GET_RESSOURCE_H
+# define MONITOR_GET_RESSOURCE_H
 
-#include <stdlib.h>
+# include <stdbool.h>
+# include <stdint.h>
 
-t_s_table	*table_get(void)
-{
-	static t_s_table	table = {.size = 0};
+bool	monitor_get_ressource(int32_t ticket);
 
-	return (&table);
-}
+#endif

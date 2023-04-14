@@ -1,22 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   table.c                                            :+:      :+:    :+:   */
+/*   monitor_get_ticket.h                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emcnab <emcnab@student.42.fr>              +#+  +:+       +#+        */
+/*   By:  <>                                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/10 18:27:04 by emcnab            #+#    #+#             */
-/*   Updated: 2023/04/14 10:28:04 by emcnab           ###   ########.fr       */
+/*   Created: 2023/04/14 11:04:40 by                   #+#    #+#             */
+/*   Updated: 2023/04/14 11:04:40 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "table.h"
+#ifndef MONITOR_GET_TICKET_H
+# define MONITOR_GET_TICKET_H
 
-#include <stdlib.h>
+# include <stdint.h>
 
-t_s_table	*table_get(void)
-{
-	static t_s_table	table = {.size = 0};
+int32_t	monitor_get_ticket(void);
 
-	return (&table);
-}
+#endif

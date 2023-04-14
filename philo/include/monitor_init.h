@@ -1,22 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   table.c                                            :+:      :+:    :+:   */
+/*   monitor_init.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emcnab <emcnab@student.42.fr>              +#+  +:+       +#+        */
+/*   By:  <>                                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/10 18:27:04 by emcnab            #+#    #+#             */
-/*   Updated: 2023/04/14 10:28:04 by emcnab           ###   ########.fr       */
+/*   Created: 2023/04/14 10:29:54 by                   #+#    #+#             */
+/*   Updated: 2023/04/14 10:29:54 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "table.h"
+#ifndef MONITOR_INIT_H
+# define MONITOR_INIT_H
 
-#include <stdlib.h>
+# include <stdint.h>
+# include "s_args.h"
 
-t_s_table	*table_get(void)
-{
-	static t_s_table	table = {.size = 0};
+int32_t	monitor_init(t_s_args *args);
 
-	return (&table);
-}
+#endif
