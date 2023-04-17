@@ -1,33 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   s_table.h                                          :+:      :+:    :+:   */
+/*   philo_get_state.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: emcnab <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/06 18:15:27 by emcnab            #+#    #+#             */
-/*   Updated: 2023/04/17 14:21:13 by emcnab           ###   ########.fr       */
+/*   Created: 2023/04/17 14:14:04 by emcnab            #+#    #+#             */
+/*   Updated: 2023/04/17 14:17:09 by emcnab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef S_TABLE_H
-# define S_TABLE_H
+#include "philo_get_state.h"
 
-# include <stdint.h>
+#include <pthread.h>
 
-# include "s_philo.h"
-# include "s_args.h"
-# include "e_game_state.h"
-
-typedef struct s_table
+t_e_philo_state	philo_get_state(t_s_philo *philo)
 {
-	int32_t			size;
-	t_e_game_state	game_state;
-	t_s_args		*args;
-	t_s_philo		*guests;
-	pthread_mutex_t	*forks;
-	pthread_mutex_t	*lock_request;
-	pthread_mutex_t	*lock_state;
-}	t_s_table;
+	t_e_philo_state	state;
 
-#endif // !DEBUG
+	if (philo == NULL)
+		return (STATE_ERROR);
+	pthread_mutex_lock(&philo->lock_state);
+	state = philo->state;
+	pthread_mutex_unlock(&philo->lock_state);
+	return (state);
+}

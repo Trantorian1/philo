@@ -6,7 +6,7 @@
 /*   By: emcnab <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/10 15:20:52 by emcnab            #+#    #+#             */
-/*   Updated: 2023/04/17 10:44:33 by emcnab           ###   ########.fr       */
+/*   Updated: 2023/04/17 14:24:10 by emcnab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,12 @@
 #include "philo_deinit.h"
 #include "table.h"
 #include "table_join.h"
+
+static void	destroy_lock(pthread_mutex_t *lock)
+{
+	pthread_mutex_destroy(lock);
+	free(lock);
+}
 
 static void	destroy_forks(t_s_table *table)
 {
@@ -37,7 +43,9 @@ void	*table_destroy(void)
 		return (NULL);
 	table_join();
 	if (table->lock_request)
-		pthread_mutex_destroy(table->lock_request);
+		destroy_lock(table->lock_request);
+	if (table->lock_state)
+		destroy_lock(table->lock_state);
 	if (table->guests)
 		free(table->guests);
 	if (table->forks)

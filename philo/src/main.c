@@ -6,7 +6,7 @@
 /*   By: emcnab <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/10 18:24:13 by emcnab            #+#    #+#             */
-/*   Updated: 2023/04/17 11:03:10 by emcnab           ###   ########.fr       */
+/*   Updated: 2023/04/17 15:00:05 by emcnab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@
 #include "philo_runner.h"
 #include "table_join.h"
 #include "libft.h"
+#include "table_loop.h"
 
 // static void	*runner(void *data)
 // {
@@ -78,6 +79,7 @@ int	main(int32_t argc, char **argv)
 		return (error_args());
 	if (simulation_start(args) == EXIT_FAILURE)
 		return (error_throw(ERROR_SIMULATION_START));
+	table_loop();
 	table_join();
 	simulation_end();
 	return (EXIT_SUCCESS);

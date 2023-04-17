@@ -1,33 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   s_table.h                                          :+:      :+:    :+:   */
+/*   table_set_state.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: emcnab <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/06 18:15:27 by emcnab            #+#    #+#             */
-/*   Updated: 2023/04/17 14:21:13 by emcnab           ###   ########.fr       */
+/*   Created: 2023/04/17 14:26:26 by emcnab            #+#    #+#             */
+/*   Updated: 2023/04/17 14:37:11 by emcnab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef S_TABLE_H
-# define S_TABLE_H
+#include "table_set_state.h"
 
-# include <stdint.h>
+#include <pthread.h>
+#include <stdlib.h>
 
-# include "s_philo.h"
-# include "s_args.h"
-# include "e_game_state.h"
+#include "table.h"
 
-typedef struct s_table
+int32_t	table_set_state(t_e_game_state state)
 {
-	int32_t			size;
-	t_e_game_state	game_state;
-	t_s_args		*args;
-	t_s_philo		*guests;
-	pthread_mutex_t	*forks;
-	pthread_mutex_t	*lock_request;
-	pthread_mutex_t	*lock_state;
-}	t_s_table;
+	t_s_table	*table;
 
-#endif // !DEBUG
+	table = table_get();
+	pthread_mutex_lock(table->lock_state);
+	table->game_state = state;
+	pthread_mutex_unlock(table->lock_state);
+	return (EXIT_SUCCESS);
+}
