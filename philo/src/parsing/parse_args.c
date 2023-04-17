@@ -6,7 +6,7 @@
 /*   By: emcnab <emcnab@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 10:16:40 by emcnab            #+#    #+#             */
-/*   Updated: 2023/04/13 17:29:17 by emcnab           ###   ########.fr       */
+/*   Updated: 2023/04/17 12:12:36 by emcnab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #include <stdlib.h>
 
 #include "parse_int32.h"
-#include "parse_uint32.h"
+#include "parse_int64.h"
 
 static int32_t	initialise_endptrs(char ***endptrs, int32_t argc)
 {
@@ -46,9 +46,9 @@ t_s_args	*parse_args(int32_t argc, char **argv)
 	if (initialise_endptrs(&endptrs, argc) == EXIT_FAILURE)
 		return ((void)free(endptrs), NULL);
 	args.philo_count = parse_int32(argv[1], &endptrs[0]);
-	args.time_death = parse_uint32(argv[2], &endptrs[1]);
-	args.time_eat = parse_uint32(argv[3], &endptrs[2]);
-	args.time_sleep = parse_uint32(argv[4], &endptrs[3]);
+	args.time_death = parse_int64(argv[2], &endptrs[1]);
+	args.time_eat = parse_int64(argv[3], &endptrs[2]);
+	args.time_sleep = parse_int64(argv[4], &endptrs[3]);
 	if (argc < 6)
 	{
 		if (validate_parsing(argc, argv, endptrs) == EXIT_FAILURE)

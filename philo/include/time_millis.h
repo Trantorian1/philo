@@ -1,20 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   monitor_get_ticket.h                               :+:      :+:    :+:   */
+/*   time_millis.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By:  <>                                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/14 11:04:40 by                   #+#    #+#             */
-/*   Updated: 2023/04/14 11:04:40 by                  ###   ########.fr       */
+/*   Created: 2023/04/17 11:47:17 by                   #+#    #+#             */
+/*   Updated: 2023/04/17 11:47:17 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MONITOR_GET_TICKET_H
-# define MONITOR_GET_TICKET_H
+#ifndef TIME_MILLIS_H
+# define TIME_MILLIS_H
 
 # include <stdint.h>
 
-int32_t	monitor_get_ticket(void);
+int32_t	time_millis(int64_t *dst);
 
 #endif

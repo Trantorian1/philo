@@ -1,22 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   monitor_get.c                                      :+:      :+:    :+:   */
+/*   time_millis.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: emcnab <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/14 10:24:35 by emcnab            #+#    #+#             */
-/*   Updated: 2023/04/14 10:30:56 by emcnab           ###   ########.fr       */
+/*   Created: 2023/04/17 11:43:19 by emcnab            #+#    #+#             */
+/*   Updated: 2023/04/17 11:47:25 by emcnab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "monitor_get.h"
+#include "time_millis.h"
 
 #include <stdlib.h>
+#include <sys/time.h>
 
-t_s_monitor	*monitor_get(void)
+int32_t	time_millis(int64_t *dst)
 {
-	static t_s_monitor	monitor = {.ticket_next = 0, .ticket_curr = 0};
+	struct timeval	time;
 
-	return (&monitor);
+	if (gettimeofday(&time, NULL) != EXIT_SUCCESS)
+		return (EXIT_FAILURE);
+	*dst = time.tv_sec * 1000 + time.tv_usec / 1000;
+	return (EXIT_SUCCESS);
 }

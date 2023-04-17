@@ -6,7 +6,7 @@
 /*   By: emcnab <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/10 18:24:13 by emcnab            #+#    #+#             */
-/*   Updated: 2023/04/14 16:45:48 by emcnab           ###   ########.fr       */
+/*   Updated: 2023/04/17 11:03:10 by emcnab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@
 #include "error_args.h"
 #include "error_throw.h"
 #include "message_bus_flush.h"
-#include "monitor_init.h"
 #include "parse_args.h"
 #include "s_table.h"
 #include "s_message_bus.h"
@@ -29,18 +28,19 @@
 #include "table_destroy.h"
 #include "message_bus_init.h"
 #include "message_bus_send.h"
-#include "libft.h"
+#include "philo_runner.h"
 #include "table_join.h"
+#include "libft.h"
 
-static void	*runner(void *data)
-{
-	t_s_philo		*philo;
-
-	philo = (t_s_philo *)data;
-	philo->state = STATE_THINKING;
-	message_bus_send(philo->id, philo->state);
-	return (NULL);
-}
+// static void	*runner(void *data)
+// {
+// 	t_s_philo		*philo;
+//
+// 	philo = (t_s_philo *)data;
+// 	philo->state = STATE_THINKING;
+// 	message_bus_send(philo->id, philo->state);
+// 	return (NULL);
+// }
 
 static void	simulation_end(void)
 {
@@ -52,7 +52,7 @@ static void	simulation_end(void)
 // WARNING: remember to ALLWAYS call table_init and message_bus_init
 static int32_t	simulation_start(t_s_args *args)
 {
-	if (table_init(args, &runner) == EXIT_FAILURE)
+	if (table_init(args, &philo_runner) == EXIT_FAILURE)
 	{
 		simulation_end();
 		return (error_throw(ERROR_TABLE_INIT));
@@ -61,11 +61,6 @@ static int32_t	simulation_start(t_s_args *args)
 	{
 		simulation_end();
 		return (error_throw(ERROR_MESSAGE_BUS_INIT));
-	}
-	if (monitor_init(args) == EXIT_FAILURE)
-	{
-		simulation_end();
-		return (error_throw(ERROR_MONITOR_INIT));
 	}
 	table_get()->game_state = SYNCHRONISED;
 	return (EXIT_SUCCESS);

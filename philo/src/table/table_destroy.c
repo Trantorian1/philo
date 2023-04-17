@@ -6,7 +6,7 @@
 /*   By: emcnab <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/10 15:20:52 by emcnab            #+#    #+#             */
-/*   Updated: 2023/04/14 10:28:14 by emcnab           ###   ########.fr       */
+/*   Updated: 2023/04/17 10:44:33 by emcnab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ void	*table_destroy(void)
 	if (table == NULL)
 		return (NULL);
 	table_join();
+	if (table->lock_request)
+		pthread_mutex_destroy(table->lock_request);
 	if (table->guests)
 		free(table->guests);
 	if (table->forks)

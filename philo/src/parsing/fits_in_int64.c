@@ -1,24 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fits_in_uint32.c                                   :+:      :+:    :+:   */
+/*   fits_in_int64.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: emcnab <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/13 16:52:55 by emcnab            #+#    #+#             */
-/*   Updated: 2023/04/13 17:17:30 by emcnab           ###   ########.fr       */
+/*   Created: 2023/04/17 11:54:57 by emcnab            #+#    #+#             */
+/*   Updated: 2023/04/17 12:12:45 by emcnab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fits_in_uint32.h"
+#include "fits_in_int64.h"
 
 #include <stdlib.h>
-#include <sys/types.h>
 
 #include "libft.h"
 
-#define UINT_LEN 10
-#define UINT_MAX_STR "4294967295"
+#define LONG_LEN 19
+#define LONG_MIN_STR "9223372036854775808"
+#define LONG_MAX_STR "9223372036854775807"
 
 static int32_t	check_arguments(char *str_int, char **endptr, int8_t sign)
 {
@@ -29,7 +29,7 @@ static int32_t	check_arguments(char *str_int, char **endptr, int8_t sign)
 		*endptr = NULL;
 		return (EXIT_FAILURE);
 	}
-	if (sign != 1)
+	if (sign != 1 && sign != -1)
 	{
 		*endptr = str_int;
 		return (EXIT_FAILURE);
@@ -42,7 +42,7 @@ static uint8_t	get_number_len(char *str_int)
 	uint8_t	size;
 
 	size = 0;
-	while (size < UINT_LEN && ft_isdigit(*str_int))
+	while (size < LONG_LEN && ft_isdigit(*str_int))
 	{
 		str_int++;
 		size++;
@@ -62,18 +62,20 @@ static int32_t	parse_success(char **endptr, char *target)
 	return (EXIT_SUCCESS);
 }
 
-int32_t	fits_in_uint32(char *str_uint, char **endptr, int8_t sign)
+int64_t	fits_in_int64(char *str_int, char **endptr, int8_t sign)
 {
 	uint8_t	size;
 
-	if (check_arguments(str_uint, endptr, sign) == EXIT_FAILURE)
+	if (check_arguments(str_int, endptr, sign) == EXIT_FAILURE)
 		return (EXIT_FAILURE);
-	size = get_number_len(str_uint);
-	if (size < UINT_LEN)
-		return (parse_success(endptr, str_uint + size));
-	else if (size > UINT_LEN)
-		return (parse_failure(endptr, str_uint + UINT_LEN));
-	else if (ft_strcmp(UINT_MAX_STR, str_uint) < 0)
-		return (parse_failure(endptr, str_uint + size));
-	return (parse_success(endptr, str_uint + size));
+	size = get_number_len(str_int);
+	if (size < LONG_LEN)
+		return (parse_success(endptr, str_int + size));
+	else if (size > LONG_LEN)
+		return (parse_failure(endptr, str_int + size));
+	else if (sign == -1 && ft_strcmp(LONG_MIN_STR, str_int) < 0)
+		return (parse_failure(endptr, str_int + size));
+	else if (sign == 1 && ft_strcmp(LONG_MAX_STR, str_int) < 0)
+		return (parse_failure(endptr, str_int + size));
+	return (parse_success(endptr, str_int + size));
 }

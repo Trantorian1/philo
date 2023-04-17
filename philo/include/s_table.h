@@ -6,7 +6,7 @@
 /*   By: emcnab <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 18:15:27 by emcnab            #+#    #+#             */
-/*   Updated: 2023/04/14 16:50:25 by emcnab           ###   ########.fr       */
+/*   Updated: 2023/04/17 10:12:07 by emcnab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ typedef struct s_table
 	t_s_args		*args;
 	t_s_philo		*guests;
 	pthread_mutex_t	*forks;
+	pthread_mutex_t	*lock_request;
 }	t_s_table;
 
 #endif // !DEBUG

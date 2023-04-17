@@ -6,7 +6,7 @@
 /*   By: emcnab <emcnab@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/10 14:36:45 by emcnab            #+#    #+#             */
-/*   Updated: 2023/04/14 16:51:04 by emcnab           ###   ########.fr       */
+/*   Updated: 2023/04/17 10:13:31 by emcnab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,16 @@ static void	distribute_cuttlery(t_s_table *table)
 	}
 }
 
+static int32_t	init_lock_request(t_s_table *table)
+{
+	table->lock_request = malloc(sizeof(*table->lock_request));
+	if (table->lock_request == NULL)
+		return (EXIT_FAILURE);
+	if (pthread_mutex_init(table->lock_request, NULL) != EXIT_SUCCESS)
+		return (EXIT_FAILURE);
+	return (EXIT_SUCCESS);
+}
+
 int32_t	table_init(t_s_args *args, t_f_runner runner)
 {
 	t_s_table	*table;
@@ -92,6 +102,8 @@ int32_t	table_init(t_s_args *args, t_f_runner runner)
 	if (init_guests(table, runner) == EXIT_FAILURE)
 		return ((void)table_destroy(), EXIT_FAILURE);
 	if (init_cuttlery(table) == EXIT_FAILURE)
+		return ((void)table_destroy(), EXIT_FAILURE);
+	if (init_lock_request(table) == EXIT_FAILURE)
 		return ((void)table_destroy(), EXIT_FAILURE);
 	distribute_cuttlery(table);
 	return (EXIT_SUCCESS);

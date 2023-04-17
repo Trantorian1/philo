@@ -1,21 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   monitor_get_ressource.h                            :+:      :+:    :+:   */
+/*   fits_in_int64.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By:  <>                                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/14 11:04:45 by                   #+#    #+#             */
-/*   Updated: 2023/04/14 11:04:45 by                  ###   ########.fr       */
+/*   Created: 2023/04/17 11:57:39 by                   #+#    #+#             */
+/*   Updated: 2023/04/17 11:57:39 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MONITOR_GET_RESSOURCE_H
-# define MONITOR_GET_RESSOURCE_H
+#ifndef FITS_IN_INT64_H
+# define FITS_IN_INT64_H
 
-# include <stdbool.h>
 # include <stdint.h>
 
-bool	monitor_get_ressource(int32_t ticket);
+int64_t	fits_in_int64(char *str_int, char **endptr, int8_t sign);
 
 #endif

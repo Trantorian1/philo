@@ -6,7 +6,7 @@
 /*   By: emcnab <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 14:03:02 by emcnab            #+#    #+#             */
-/*   Updated: 2023/04/13 17:29:28 by emcnab           ###   ########.fr       */
+/*   Updated: 2023/04/17 11:48:23 by emcnab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,11 @@
 
 typedef struct s_args
 {
-	int32_t		philo_count;
-	uint64_t	time_death;
-	uint64_t	time_eat;
-	uint64_t	time_sleep;
-	int64_t		meal_target;
+	int32_t	philo_count;
+	int64_t	time_death;
+	int64_t	time_eat;
+	int64_t	time_sleep;
+	int32_t	meal_target;
 }	t_s_args;
 
 #endif

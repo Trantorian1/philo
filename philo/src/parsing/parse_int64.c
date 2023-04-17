@@ -1,26 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_uint32.c                                     :+:      :+:    :+:   */
+/*   parse_int64.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: emcnab <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/13 16:48:24 by emcnab            #+#    #+#             */
-/*   Updated: 2023/04/13 17:28:25 by emcnab           ###   ########.fr       */
+/*   Created: 2023/04/17 11:49:56 by emcnab            #+#    #+#             */
+/*   Updated: 2023/04/17 12:12:58 by emcnab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parse_uint32.h"
+#include "parse_int64.h"
 
 #include <stdlib.h>
 
-#include "fits_in_uint32.h"
 #include "parse_space.h"
 #include "parse_sign.h"
 #include "parse_zeros.h"
+#include "fits_in_int64.h"
 #include "libft.h"
 
-uint32_t	parse_uint32(char *str_int, char **endptr)
+int64_t	parse_int64(char *str_int, char **endptr)
 {
 	char	**cursor;
 	int8_t	sign;
@@ -36,8 +36,8 @@ uint32_t	parse_uint32(char *str_int, char **endptr)
 	parse_space(cursor);
 	parse_sign(cursor, &sign);
 	parse_zeros(cursor);
-	if (fits_in_uint32(*cursor, endptr, sign) == EXIT_FAILURE
-		|| **endptr == '\0')
+	if (fits_in_int64(*cursor, endptr, sign) == EXIT_FAILURE
+		|| **endptr != '\0')
 		return (0);
-	return (ft_atoui(*cursor));
+	return (ft_atol(*cursor));
 }

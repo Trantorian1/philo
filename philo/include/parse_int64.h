@@ -1,21 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   monitor_init.h                                     :+:      :+:    :+:   */
+/*   parse_int64.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By:  <>                                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/14 10:29:54 by                   #+#    #+#             */
-/*   Updated: 2023/04/14 10:29:54 by                  ###   ########.fr       */
+/*   Created: 2023/04/17 11:51:02 by                   #+#    #+#             */
+/*   Updated: 2023/04/17 11:51:02 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MONITOR_INIT_H
-# define MONITOR_INIT_H
+#ifndef PARSE_INT64_H
+# define PARSE_INT64_H
 
 # include <stdint.h>
-# include "s_args.h"
 
-int32_t	monitor_init(t_s_args *args);
+int64_t	parse_int64(char *str_int, char **endptr);
 
 #endif

@@ -1,20 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   monitor_restore.h                                  :+:      :+:    :+:   */
+/*   test.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By:  <>                                        +#+  +:+       +#+        */
+/*   By: emcnab <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/14 11:50:57 by                   #+#    #+#             */
-/*   Updated: 2023/04/14 11:50:57 by                  ###   ########.fr       */
+/*   Created: 2023/04/17 11:58:50 by emcnab            #+#    #+#             */
+/*   Updated: 2023/04/17 12:02:29 by emcnab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MONITOR_RESTORE_H
-# define MONITOR_RESTORE_H
+#include <stdlib.h>
+#include <limits.h>
+#include <stdio.h>
 
-# include "s_philo.h"
-
-void	monitor_restore(t_s_philo *philo);
-
-#endif
+int	main(void)
+{
+	printf("%ld\n", LONG_MAX);
+	printf("%ld\n", LONG_MIN);
+	return (EXIT_SUCCESS);
+}

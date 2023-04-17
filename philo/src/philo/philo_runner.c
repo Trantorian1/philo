@@ -6,7 +6,7 @@
 /*   By: emcnab <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 14:53:12 by emcnab            #+#    #+#             */
-/*   Updated: 2023/04/14 18:48:11 by emcnab           ###   ########.fr       */
+/*   Updated: 2023/04/17 10:50:49 by emcnab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 #include "philo_eat.h"
 #include "philo_sleep.h"
 #include "philo_think.h"
+#include <stdlib.h>
 
 typedef int32_t					(*t_f_philo_state)(t_s_philo *philo);
 
@@ -39,8 +40,8 @@ void	*philo_runner(void *data)
 	t_s_philo	*philo;
 
 	philo = (t_s_philo *)data;
-	philo->state = STATE_THINKING;
 	while (table_get()->game_state != END)
-		g_state_machine[philo->state](philo);
+		if (g_state_machine[philo->state](philo) == EXIT_FAILURE)
+			break ;
 	return (philo);
 }
