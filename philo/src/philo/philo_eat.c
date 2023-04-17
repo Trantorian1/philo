@@ -6,7 +6,7 @@
 /*   By: emcnab <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 16:46:41 by emcnab            #+#    #+#             */
-/*   Updated: 2023/04/17 18:06:58 by emcnab           ###   ########.fr       */
+/*   Updated: 2023/04/17 18:21:12 by emcnab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,5 +43,6 @@ int32_t	philo_eat(t_s_philo *philo)
 	pthread_mutex_unlock(&philo->fork_left);
 	philo->meals++;
 	philo->time_last_meal = time_curr;
+	philo->owner = false;
 	return (philo_set_state(philo, STATE_SLEEPING, time_curr));
 }
