@@ -1,27 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   s_message.h                                        :+:      :+:    :+:   */
+/*   error_philo.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: emcnab <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/11 10:56:50 by emcnab            #+#    #+#             */
-/*   Updated: 2023/04/17 15:32:58 by emcnab           ###   ########.fr       */
+/*   Created: 2023/04/17 15:50:52 by emcnab            #+#    #+#             */
+/*   Updated: 2023/04/17 16:01:11 by emcnab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef S_MESSAGE_H
-# define S_MESSAGE_H
+#include "error_philo.h"
 
-# include <stdint.h>
+#include <stdlib.h>
 
-# include "e_philo_state.h"
+#include "e_philo_state.h"
+#include "philo_set_state.h"
 
-typedef struct s_message
+int32_t	error_philo(t_s_philo *philo, t_e_philo_state state, int64_t time)
 {
-	int32_t			id;
-	int64_t			time;
-	t_e_philo_state	state;
-}	t_s_message;
-
-#endif
+	if (philo == NULL)
+		return (EXIT_FAILURE);
+	philo_set_state(philo, state, time);
+	return (EXIT_FAILURE);
+}

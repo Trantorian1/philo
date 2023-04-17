@@ -1,27 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   s_message.h                                        :+:      :+:    :+:   */
+/*   error_time.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emcnab <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By:  <>                                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/11 10:56:50 by emcnab            #+#    #+#             */
-/*   Updated: 2023/04/17 15:32:58 by emcnab           ###   ########.fr       */
+/*   Created: 2023/04/17 16:20:15 by                   #+#    #+#             */
+/*   Updated: 2023/04/17 16:20:15 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef S_MESSAGE_H
-# define S_MESSAGE_H
+#ifndef ERROR_TIME_H
+# define ERROR_TIME_H
 
 # include <stdint.h>
 
-# include "e_philo_state.h"
-
-typedef struct s_message
-{
-	int32_t			id;
-	int64_t			time;
-	t_e_philo_state	state;
-}	t_s_message;
+int32_t	error_time(void);
 
 #endif

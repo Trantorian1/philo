@@ -6,7 +6,7 @@
 /*   By: emcnab <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 18:20:18 by emcnab            #+#    #+#             */
-/*   Updated: 2023/04/17 12:17:26 by emcnab           ###   ########.fr       */
+/*   Updated: 2023/04/17 16:17:10 by emcnab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,9 @@ static void	*loop(void *data)
 	table = table_get();
 	while (table->game_state == IDLE)
 		continue ;
-	philo_set_state(philo, STATE_THINKING);
 	if (time_millis(&philo->time_last_meal) != EXIT_SUCCESS)
-		return ((void)philo_set_state(philo, STATE_ERROR), NULL);
+		return ((void)philo_set_state(philo, STATE_ERROR, -1), NULL);
+	philo_set_state(philo, STATE_THINKING, philo->time_last_meal);
 	return (philo->runner(philo));
 }
 

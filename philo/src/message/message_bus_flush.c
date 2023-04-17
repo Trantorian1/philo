@@ -6,7 +6,7 @@
 /*   By: emcnab <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 11:45:48 by emcnab            #+#    #+#             */
-/*   Updated: 2023/04/12 10:54:47 by emcnab           ###   ########.fr       */
+/*   Updated: 2023/04/17 15:30:11 by emcnab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ static void	message_bus_tail_update(
 }
 
 static void	message_bus_flush_iterative(
-	t_s_message_bus *message_bus,
 	t_s_message *tail,
 	t_s_message *head)
 {
@@ -41,7 +40,6 @@ static void	message_bus_flush_iterative(
 		message_print(cursor);
 		cursor++;
 	}
-	message_bus_tail_update(message_bus, head);
 }
 
 static void	message_bus_flush_circular(
@@ -58,12 +56,11 @@ static void	message_bus_flush_circular(
 		cursor++;
 	}
 	cursor = message_bus->buffer_start;
-	while (cursor < message_bus->head)
+	while (cursor < head)
 	{
 		message_print(cursor);
 		cursor++;
 	}
-	message_bus_tail_update(message_bus, head);
 }
 
 /**
@@ -87,13 +84,17 @@ int32_t	message_bus_flush(void)
 	t_s_message		*head;
 
 	message_bus = message_bus_get();
+	// pthread_mutex_lock(&message_bus->lock_write);
 	if (message_bus->size == 0)
 		return (EXIT_SUCCESS);
+	message_bus->size = 0;
+	// pthread_mutex_unlock(&message_bus->lock_write);
 	tail = message_bus_get_tail();
 	head = message_bus_get_head();
 	if (tail < head)
-		message_bus_flush_iterative(message_bus, tail, head);
+		message_bus_flush_iterative(tail, head);
 	else
 		message_bus_flush_circular(message_bus, tail, head);
+	message_bus_tail_update(message_bus, head);
 	return (EXIT_SUCCESS);
 }

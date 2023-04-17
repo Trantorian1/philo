@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By:  <>                                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/14 17:39:23 by                   #+#    #+#             */
-/*   Updated: 2023/04/14 17:39:23 by                  ###   ########.fr       */
+/*   Created: 2023/04/17 16:09:21 by                   #+#    #+#             */
+/*   Updated: 2023/04/17 16:09:21 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,6 @@
 # include <stdint.h>
 # include "s_philo.h"
 
-int32_t	philo_set_state(t_s_philo *philo, t_e_philo_state state);
+int32_t	philo_set_state(t_s_philo *philo, t_e_philo_state state, int64_t time);
 
 #endif

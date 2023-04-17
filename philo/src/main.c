@@ -6,7 +6,7 @@
 /*   By: emcnab <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/10 18:24:13 by emcnab            #+#    #+#             */
-/*   Updated: 2023/04/17 15:00:05 by emcnab           ###   ########.fr       */
+/*   Updated: 2023/04/17 15:29:05 by emcnab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@
 #include "table_join.h"
 #include "libft.h"
 #include "table_loop.h"
+#include "table_set_state.h"
 
 // static void	*runner(void *data)
 // {
@@ -63,7 +64,7 @@ static int32_t	simulation_start(t_s_args *args)
 		simulation_end();
 		return (error_throw(ERROR_MESSAGE_BUS_INIT));
 	}
-	table_get()->game_state = SYNCHRONISED;
+	table_set_state(SYNCHRONISED);
 	return (EXIT_SUCCESS);
 }
 

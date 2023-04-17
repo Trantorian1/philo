@@ -6,7 +6,7 @@
 /*   By: emcnab <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 14:12:44 by emcnab            #+#    #+#             */
-/*   Updated: 2023/04/17 14:59:52 by emcnab           ###   ########.fr       */
+/*   Updated: 2023/04/17 15:29:14 by emcnab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,9 @@ int32_t	table_loop(void)
 	t_e_philo_state	state;
 
 	table = table_get();
-	index = -1;
 	while (true)
 	{
+		index = -1;
 		while (++index < table->size)
 		{
 			state = philo_get_state(&table->guests[index]);

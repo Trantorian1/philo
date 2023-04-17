@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By:  <>                                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/13 11:26:42 by                   #+#    #+#             */
-/*   Updated: 2023/04/13 11:42:08 by emcnab           ###   ########.fr       */
+/*   Created: 2023/04/17 15:34:03 by                   #+#    #+#             */
+/*   Updated: 2023/04/17 15:48:52 by emcnab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,6 @@
 
 # include "e_philo_state.h"
 
-int32_t	message_bus_send(int32_t id, t_e_philo_state state);
+int32_t	message_bus_send(int64_t time, int32_t id, t_e_philo_state state);
 
 #endif

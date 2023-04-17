@@ -6,7 +6,7 @@
 /*   By: emcnab <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 12:57:31 by emcnab            #+#    #+#             */
-/*   Updated: 2023/04/14 18:45:59 by emcnab           ###   ########.fr       */
+/*   Updated: 2023/04/17 16:21:26 by emcnab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include <unistd.h>
 
 #include "e_philo_state.h"
+#include "error_time.h"
 #include "message_format_nothing.h"
 #include "message_format_pick_fork.h"
 #include "message_format_eating.h"
@@ -40,6 +41,8 @@ int32_t	message_print(t_s_message *message)
 {
 	if (message == NULL)
 		return (EXIT_FAILURE);
+	if (message->time < 0)
+		error_time();
 	g_formatters[message->state](message);
 	return (EXIT_SUCCESS);
 }

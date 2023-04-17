@@ -6,7 +6,7 @@
 /*   By: emcnab <emcnab@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 18:35:09 by emcnab            #+#    #+#             */
-/*   Updated: 2023/04/17 12:44:29 by emcnab           ###   ########.fr       */
+/*   Updated: 2023/04/17 16:05:18 by emcnab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 #include "table_request.h"
 #include "philo_set_state.h"
 #include "time_millis.h"
+#include "error_philo.h"
 
 int32_t	philo_think(t_s_philo *philo)
 {
@@ -27,11 +28,11 @@ int32_t	philo_think(t_s_philo *philo)
 	if (philo == NULL)
 		return (EXIT_FAILURE);
 	if (time_millis(&time_curr) != EXIT_SUCCESS)
-		return ((void)philo_set_state(philo, STATE_ERROR), EXIT_FAILURE);
+		return (error_philo(philo, STATE_ERROR, -1));
 	time_delta = time_curr - philo->time_last_meal;
 	if (time_delta >= table_get()->args->time_death)
-		return ((void)philo_set_state(philo, STATE_DEAD), EXIT_FAILURE);
+		return (error_philo(philo, STATE_DEAD, time_curr));
 	if (table_request(philo) == true)
-		return (philo_set_state(philo, STATE_PICK_FORK));
+		return (philo_set_state(philo, STATE_PICK_FORK, time_curr));
 	return (EXIT_SUCCESS);
 }
