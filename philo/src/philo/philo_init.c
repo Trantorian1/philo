@@ -6,7 +6,7 @@
 /*   By: emcnab <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 18:20:18 by emcnab            #+#    #+#             */
-/*   Updated: 2023/04/17 12:13:35 by emcnab           ###   ########.fr       */
+/*   Updated: 2023/04/17 12:17:26 by emcnab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,20 +21,8 @@
 #include "e_game_state.h"
 #include "e_philo_state.h"
 #include "philo_set_state.h"
+#include "time_millis.h"
 #include "table.h"
-
-static int32_t	philo_update_time_last_meal(t_s_philo *philo)
-{
-	struct timeval	time;
-
-	if (gettimeofday(&time, NULL) != EXIT_SUCCESS)
-	{
-		philo->state = STATE_ERROR;
-		return (EXIT_FAILURE);
-	}
-	philo->time_last_meal = time.tv_usec;
-	return (EXIT_SUCCESS);
-}
 
 static void	*loop(void *data)
 {
@@ -48,7 +36,8 @@ static void	*loop(void *data)
 	while (table->game_state == IDLE)
 		continue ;
 	philo_set_state(philo, STATE_THINKING);
-	philo_update_time_last_meal(philo);
+	if (time_millis(&philo->time_last_meal) != EXIT_SUCCESS)
+		return ((void)philo_set_state(philo, STATE_ERROR), NULL);
 	return (philo->runner(philo));
 }
 
