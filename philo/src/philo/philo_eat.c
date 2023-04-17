@@ -6,7 +6,7 @@
 /*   By: emcnab <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 16:46:41 by emcnab            #+#    #+#             */
-/*   Updated: 2023/04/17 12:26:27 by emcnab           ###   ########.fr       */
+/*   Updated: 2023/04/17 12:44:29 by emcnab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int32_t	philo_eat(t_s_philo *philo)
 	if (philo == NULL)
 		return (EXIT_FAILURE);
 	if (time_millis(&time_curr) != EXIT_SUCCESS)
-		return (EXIT_FAILURE);
+		return ((void)philo_set_state(philo, STATE_ERROR), EXIT_FAILURE);
 	time_delta = time_curr - philo->time_last_meal;
 	if (time_delta >= table_get()->args->time_death)
 		return ((void)philo_set_state(philo, STATE_DEAD), EXIT_FAILURE);
