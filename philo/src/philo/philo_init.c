@@ -6,7 +6,7 @@
 /*   By: emcnab <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 18:20:18 by emcnab            #+#    #+#             */
-/*   Updated: 2023/04/17 16:17:10 by emcnab           ###   ########.fr       */
+/*   Updated: 2023/04/17 17:43:06 by emcnab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ int32_t	philo_init(t_s_philo *philo, int32_t id, t_f_runner *runner)
 	if (philo == NULL || runner == NULL)
 		return (EXIT_FAILURE);
 	philo->id = id;
+	philo->meals = 0;
 	philo->time_last_meal = 0;
 	philo->state = STATE_WAITING;
 	philo->runner = runner;
