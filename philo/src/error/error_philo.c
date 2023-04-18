@@ -6,7 +6,7 @@
 /*   By: emcnab <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 15:50:52 by emcnab            #+#    #+#             */
-/*   Updated: 2023/04/17 16:01:11 by emcnab           ###   ########.fr       */
+/*   Updated: 2023/04/18 08:42:35 by emcnab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ int32_t	error_philo(t_s_philo *philo, t_e_philo_state state, int64_t time)
 {
 	if (philo == NULL)
 		return (EXIT_FAILURE);
+	philo->time_last_meal = time;
+	philo->owner = false;
 	philo_set_state(philo, state, time);
 	return (EXIT_FAILURE);
 }

@@ -6,7 +6,7 @@
 /*   By: emcnab <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 16:46:41 by emcnab            #+#    #+#             */
-/*   Updated: 2023/04/17 18:21:12 by emcnab           ###   ########.fr       */
+/*   Updated: 2023/04/18 08:41:21 by emcnab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,12 @@
 #include "time_millis.h"
 #include "error_philo.h"
 
+static void	restore_cutlerry(t_s_philo *philo)
+{
+	pthread_mutex_unlock(&philo->fork_right);
+	pthread_mutex_unlock(&philo->fork_left);
+}
+
 int32_t	philo_eat(t_s_philo *philo)
 {
 	t_s_table	*table;
@@ -33,14 +39,19 @@ int32_t	philo_eat(t_s_philo *philo)
 		return (EXIT_FAILURE);
 	table = table_get();
 	if (time_millis(&time_curr) != EXIT_SUCCESS)
+	{
+		restore_cutlerry(philo);
 		return (error_philo(philo, STATE_ERROR, -1));
+	}
 	time_delta = time_curr - philo->time_last_meal;
 	if (time_delta >= table->args->time_death)
+	{
+		restore_cutlerry(philo);
 		return (error_philo(philo, STATE_DEAD, time_curr));
+	}
 	if (time_delta < table->args->time_eat)
 		return (EXIT_SUCCESS);
-	pthread_mutex_unlock(&philo->fork_right);
-	pthread_mutex_unlock(&philo->fork_left);
+	restore_cutlerry(philo);
 	philo->meals++;
 	philo->time_last_meal = time_curr;
 	philo->owner = false;

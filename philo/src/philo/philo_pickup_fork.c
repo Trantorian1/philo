@@ -6,7 +6,7 @@
 /*   By: emcnab <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 15:04:25 by emcnab            #+#    #+#             */
-/*   Updated: 2023/04/17 17:36:31 by emcnab           ###   ########.fr       */
+/*   Updated: 2023/04/18 08:38:06 by emcnab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,11 @@
 
 int32_t	philo_pickup_fork(t_s_philo *philo)
 {
-	int64_t	time_curr;
-
 	if (philo == NULL)
 		return (EXIT_FAILURE);
 	pthread_mutex_lock(&philo->fork_left);
 	pthread_mutex_lock(&philo->fork_right);
-	if (time_millis(&time_curr) != EXIT_SUCCESS)
+	if (time_millis(&philo->time_last_meal) != EXIT_SUCCESS)
 		return (error_philo(philo, STATE_DEAD, -1));
-	return (philo_set_state(philo, STATE_EATING, time_curr));
+	return (philo_set_state(philo, STATE_EATING, philo->time_last_meal));
 }

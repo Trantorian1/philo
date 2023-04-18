@@ -6,7 +6,7 @@
 /*   By: emcnab <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 14:12:44 by emcnab            #+#    #+#             */
-/*   Updated: 2023/04/17 17:54:39 by emcnab           ###   ########.fr       */
+/*   Updated: 2023/04/18 08:44:16 by emcnab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int32_t	table_loop(void)
 		{
 			state = philo_get_state(&table->guests[index]);
 			if (state == STATE_DEAD || state == STATE_DEAD)
-				table_loop_exit();
+				return (table_loop_exit());
 			if (table->guests[index].meals >= table->args->meal_target)
 				satiated++;
 		}
