@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: emcnab <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/06 18:08:42 by emcnab            #+#    #+#             */
-/*   Updated: 2023/04/17 18:14:10 by emcnab           ###   ########.fr       */
+/*   Created: 2023/04/18 10:08:21 by emcnab            #+#    #+#             */
+/*   Updated: 2023/04/18 10:08:23 by emcnab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ typedef struct s_philo
 	int64_t			time_last_meal;
 	t_e_philo_state	state;
 	pthread_mutex_t	lock_state;
+	pthread_mutex_t	lock_attr;
 	pthread_mutex_t	fork_left;
 	pthread_mutex_t	fork_right;
 	pthread_t		thread;

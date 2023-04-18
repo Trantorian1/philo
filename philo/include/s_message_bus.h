@@ -6,7 +6,7 @@
 /*   By: emcnab <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 10:58:46 by emcnab            #+#    #+#             */
-/*   Updated: 2023/04/17 12:53:03 by emcnab           ###   ########.fr       */
+/*   Updated: 2023/04/18 09:40:57 by emcnab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,9 @@ typedef struct s_message_bus
 	t_s_message		*head;
 	pthread_mutex_t	lock_tail;
 	pthread_mutex_t	lock_head;
+	pthread_mutex_t	lock_size;
 	pthread_mutex_t	lock_write;
+	pthread_mutex_t	lock_flush;
 	t_s_message		buffer_start[MESSAGE_BUS_SIZE];
 }	t_s_message_bus;
 

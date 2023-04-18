@@ -6,7 +6,7 @@
 /*   By: emcnab <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 14:12:44 by emcnab            #+#    #+#             */
-/*   Updated: 2023/04/18 08:44:16 by emcnab           ###   ########.fr       */
+/*   Updated: 2023/04/18 10:06:59 by emcnab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 #include "e_philo_state.h"
 #include "message_bus_flush.h"
 #include "philo_get_state.h"
+#include "philo_get_meals.h"
 #include "s_table.h"
 #include "table.h"
 #include "table_set_state.h"
@@ -47,7 +48,7 @@ int32_t	table_loop(void)
 			state = philo_get_state(&table->guests[index]);
 			if (state == STATE_DEAD || state == STATE_DEAD)
 				return (table_loop_exit());
-			if (table->guests[index].meals >= table->args->meal_target)
+			if (philo_get_meals(&table->guests[index]) >= table->args->meal_target)
 				satiated++;
 		}
 		if (satiated == table->size)
