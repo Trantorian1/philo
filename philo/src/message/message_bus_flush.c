@@ -6,7 +6,7 @@
 /*   By: emcnab <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 11:45:48 by emcnab            #+#    #+#             */
-/*   Updated: 2023/04/18 10:11:29 by emcnab           ###   ########.fr       */
+/*   Updated: 2023/04/18 11:56:38 by emcnab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,9 +84,14 @@ int32_t	message_bus_flush(void)
 	t_s_message		*head;
 
 	message_bus = message_bus_get();
+	pthread_mutex_lock(&message_bus->lock_size);
 	if (message_bus->size == 0)
+	{
+		pthread_mutex_unlock(&message_bus->lock_size);
 		return (EXIT_SUCCESS);
+	}
 	message_bus->size = 0;
+	pthread_mutex_unlock(&message_bus->lock_size);
 	tail = message_bus_get_tail();
 	head = message_bus_get_head();
 	if (tail < head)

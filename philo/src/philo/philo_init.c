@@ -6,7 +6,7 @@
 /*   By: emcnab <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 18:20:18 by emcnab            #+#    #+#             */
-/*   Updated: 2023/04/18 09:31:07 by emcnab           ###   ########.fr       */
+/*   Updated: 2023/04/18 10:39:30 by emcnab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ int32_t	philo_init(t_s_philo *philo, int32_t id, t_f_runner *runner)
 	pthread_mutex_lock(&philo->lock_attr);
 	philo->id = id;
 	philo->meals = 0;
-	philo->owner = false;
+	philo->ownership = false;
 	philo->time_last_meal = 0;
 	philo->state = STATE_WAITING;
 	philo->runner = runner;

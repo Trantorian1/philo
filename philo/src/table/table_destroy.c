@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   table_destroy.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emcnab <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: emcnab <emcnab@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/10 15:20:52 by emcnab            #+#    #+#             */
-/*   Updated: 2023/04/17 14:24:10 by emcnab           ###   ########.fr       */
+/*   Updated: 2023/04/18 10:18:11 by emcnab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ void	*table_destroy(void)
 	table = table_get();
 	if (table == NULL)
 		return (NULL);
-	table_join();
 	if (table->lock_request)
 		destroy_lock(table->lock_request);
 	if (table->lock_state)

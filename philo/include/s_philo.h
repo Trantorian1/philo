@@ -6,7 +6,7 @@
 /*   By: emcnab <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 10:08:21 by emcnab            #+#    #+#             */
-/*   Updated: 2023/04/18 10:08:23 by emcnab           ###   ########.fr       */
+/*   Updated: 2023/04/18 10:39:30 by emcnab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ typedef struct s_philo
 {
 	int32_t			id;
 	int32_t			meals;
-	bool			owner;
+	bool			ownership;
 	int64_t			time_last_meal;
 	t_e_philo_state	state;
 	pthread_mutex_t	lock_state;
