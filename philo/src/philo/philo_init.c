@@ -6,7 +6,7 @@
 /*   By: emcnab <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 18:20:18 by emcnab            #+#    #+#             */
-/*   Updated: 2023/04/21 15:20:22 by emcnab           ###   ########.fr       */
+/*   Updated: 2023/04/21 16:17:37 by emcnab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 #include "e_error_code.h"
 #include "e_game_state.h"
 #include "e_philo_state.h"
+#include "philo_destroy.h"
 #include "philo_set_state.h"
 #include "philo_set_time_last_meal.h"
 #include "philo_set_ownership.h"
@@ -68,9 +69,11 @@ int32_t	philo_init(t_s_philo *philo, int32_t id, t_f_runner *runner)
 	if (philo == NULL || runner == NULL)
 		return (EXIT_FAILURE);
 	if (pthread_mutex_init(&philo->lock_state, NULL) != EXIT_SUCCESS)
-		return (EXIT_FAILURE);
+		return ((void)philo_destroy(philo), EXIT_FAILURE);
+	philo->init_state = true;
 	if (pthread_mutex_init(&philo->lock_attr, NULL) != EXIT_SUCCESS)
-		return (EXIT_FAILURE);
+		return ((void)philo_destroy, EXIT_FAILURE);
+	philo->init_attr = true;
 	pthread_mutex_lock(&philo->lock_attr);
 	philo->id = id;
 	philo->meals = 0;
@@ -80,6 +83,6 @@ int32_t	philo_init(t_s_philo *philo, int32_t id, t_f_runner *runner)
 	philo->runner = runner;
 	pthread_mutex_unlock(&philo->lock_attr);
 	if (pthread_create(&philo->thread, NULL, &loop, philo) != EXIT_SUCCESS)
-		return (EXIT_FAILURE);
+		return ((void)philo_destroy, EXIT_FAILURE);
 	return (EXIT_SUCCESS);
 }

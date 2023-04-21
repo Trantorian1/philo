@@ -6,7 +6,7 @@
 /*   By: emcnab <emcnab@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/10 14:36:45 by emcnab            #+#    #+#             */
-/*   Updated: 2023/04/21 15:58:25 by emcnab           ###   ########.fr       */
+/*   Updated: 2023/04/21 16:10:09 by emcnab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,10 +91,13 @@ static int32_t	init_locks(t_s_table *table)
 {
 	if (pthread_mutex_init(&table->lock_state, NULL) != EXIT_SUCCESS)
 		return ((void)table_destroy(), EXIT_FAILURE);
+	table->init_state = true;
 	if (pthread_mutex_init(&table->lock_ready, NULL) != EXIT_SUCCESS)
 		return ((void)table_destroy(), EXIT_FAILURE);
+	table->init_ready = true;
 	if (pthread_mutex_init(&table->lock_time, NULL) != EXIT_SUCCESS)
 		return ((void)table_destroy(), EXIT_FAILURE);
+	table->init_time = true;
 	table->ready = 0;
 	return (EXIT_SUCCESS);
 }
