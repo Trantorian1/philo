@@ -6,7 +6,7 @@
 #    By: emcnab <emcnab@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/06 14:08:48 by emcnab            #+#    #+#              #
-#    Updated: 2023/04/21 11:35:17 by emcnab           ###   ########.fr        #
+#    Updated: 2023/04/21 15:30:48 by emcnab           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -61,7 +61,7 @@ OPT = -O3
 
 C_COMPILER = clang
 I_FLAGS = $(foreach dir,$(DIR_INCL),-I$(dir) )
-C_FLAGS = -Wall -Wextra -Werror -Weverything -Wno-padded $(DEBUG) $(I_FLAGS)
+C_FLAGS = -Wall -Wextra -Werror -Weverything -Wno-padded $(OPT) $(I_FLAGS)
 C_DEPS = -MM -MP $(I_FLAGS)
 
 BIN = $(DIR_BIN)/philo

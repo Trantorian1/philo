@@ -6,7 +6,7 @@
 /*   By: emcnab <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 11:34:37 by emcnab            #+#    #+#             */
-/*   Updated: 2023/04/18 11:55:28 by emcnab           ###   ########.fr       */
+/*   Updated: 2023/04/21 14:27:03 by emcnab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 #include "message_bus_get_size.h"
 #include "message_bus_get_tail.h"
 #include "table.h"
+#include "table_get_state.h"
 
 static void	message_bus_incr_head(t_s_message_bus *message_bus)
 {
@@ -57,6 +58,8 @@ static void	message_bus_incr_size(t_s_message_bus *message_bus)
  *
  * @return (int32_t): EXIT_SUCCESS.
  */
+// TODO: implement message bus freeze as soon as a philo dies (necessary ?)
+// WARNING: still needs to receive last death message
 int32_t	message_bus_send(int64_t time, int32_t id, t_e_philo_state state)
 {
 	t_s_message_bus	*message_bus;
