@@ -6,7 +6,7 @@
 /*   By: emcnab <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 18:20:18 by emcnab            #+#    #+#             */
-/*   Updated: 2023/04/21 12:20:25 by emcnab           ###   ########.fr       */
+/*   Updated: 2023/04/21 14:07:37 by emcnab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,11 @@ static void	*loop(void *data)
 	philo_set_time_last_meal(philo, time_start);
 	if (philo->id % 2 == 1)
 	{
-		philo_set_ownership(philo, true);
 		philo_set_state(philo, STATE_PICK_FORK, time_start);
+		philo_set_ownership(philo, true);
+		pthread_mutex_lock(&philo->fork_left);
+		pthread_mutex_lock(&philo->fork_right);
+		philo_set_state(philo, STATE_EATING, time_start);
 	}
 	else
 		philo_set_state(philo, STATE_THINKING, time_start);
