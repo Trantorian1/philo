@@ -6,7 +6,7 @@
 /*   By: emcnab <emcnab@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/10 14:36:45 by emcnab            #+#    #+#             */
-/*   Updated: 2023/04/21 11:37:48 by emcnab           ###   ########.fr       */
+/*   Updated: 2023/04/21 11:52:35 by emcnab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 #include "philo_init.h"
 #include "table_destroy.h"
 #include "table_get_left.h"
+#include "table_get_right.h"
 #include "table.h"
 #include "libft.h"
 
@@ -39,6 +40,12 @@ static int32_t	init_guests(t_s_table *table, t_f_runner runner)
 		error_code = philo_init(&table->guests[index], index, runner);
 		if (error_code == EXIT_FAILURE)
 			return (EXIT_FAILURE);
+	}
+	index = -1;
+	while (++index < table->size)
+	{
+		table->guests[index].neighbour_left = table_get_left(table, index);
+		table->guests[index].neighbour_right = table_get_right(table, index);
 	}
 	return (EXIT_SUCCESS);
 }

@@ -6,7 +6,7 @@
 /*   By: emcnab <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 13:28:12 by emcnab            #+#    #+#             */
-/*   Updated: 2023/04/21 11:36:48 by emcnab           ###   ########.fr       */
+/*   Updated: 2023/04/21 11:54:00 by emcnab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,18 +41,18 @@ static bool	has_priority(t_s_philo *philo, t_s_philo *neighbour)
 
 bool	table_request(t_s_philo *philo)
 {
-	t_s_table	*table;
-	t_s_philo	*neighbour_left;
-	t_s_philo	*neighbour_right;
+	// t_s_table	*table;
+	// t_s_philo	*neighbour_left;
+	// t_s_philo	*neighbour_right;
 
 	if (philo == NULL)
 		return (false);
-	table = table_get();
-	neighbour_left = table_get_left(table, philo->id);
-	neighbour_right = tables_get_right(table, philo->id);
-	if (has_priority(philo, neighbour_left))
+	// table = table_get();
+	// neighbour_left = table_get_left(table, philo->id);
+	// neighbour_right = table_get_right(table, philo->id);
+	if (has_priority(philo, philo->neighbour_left))
 		return (false);
-	if (has_priority(philo, neighbour_right))
+	if (has_priority(philo, philo->neighbour_right))
 		return (false);
 	philo_set_ownership(philo, true);
 	return (true);
