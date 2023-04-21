@@ -6,7 +6,7 @@
 /*   By: emcnab <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 13:28:12 by emcnab            #+#    #+#             */
-/*   Updated: 2023/04/21 15:22:53 by emcnab           ###   ########.fr       */
+/*   Updated: 2023/04/21 16:49:33 by emcnab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,15 +25,16 @@
 
 static bool	has_priority(t_s_philo *philo, t_s_philo *neighbour)
 {
-	t_s_args	*table_args;
-	bool		priority_meals;
-	bool		priority_owner;
+	static t_s_args	*table_args = NULL;
+	bool			priority_meals;
+	bool			priority_owner;
 
 	if (neighbour == philo)
 		return (true);
+	if (table_args == NULL)
+		table_args = table_get()->args;
 	pthread_mutex_lock(&neighbour->lock_attr);
-	table_args = table_get()->args;
-	priority_meals = neighbour->time_last_meal + table_args->time_eat < philo->time_last_meal + table_args->time_eat;
+	priority_meals = neighbour->time_last_meal < philo->time_last_meal;
 	priority_owner = neighbour->ownership == true;
 	pthread_mutex_unlock(&neighbour->lock_attr);
 	return (priority_meals || priority_owner);
