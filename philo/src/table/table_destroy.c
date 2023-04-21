@@ -6,7 +6,7 @@
 /*   By: emcnab <emcnab@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/10 15:20:52 by emcnab            #+#    #+#             */
-/*   Updated: 2023/04/21 11:40:51 by emcnab           ###   ########.fr       */
+/*   Updated: 2023/04/21 14:40:52 by emcnab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,5 +40,6 @@ void	*table_destroy(void)
 	if (table->forks)
 		destroy_forks(table);
 	pthread_mutex_destroy(&table->lock_state);
+	pthread_mutex_destroy(&table->lock_ready);
 	return (NULL);
 }

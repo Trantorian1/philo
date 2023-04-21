@@ -6,7 +6,7 @@
 /*   By: emcnab <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 18:20:18 by emcnab            #+#    #+#             */
-/*   Updated: 2023/04/21 14:07:37 by emcnab           ###   ########.fr       */
+/*   Updated: 2023/04/21 14:54:06 by emcnab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,22 +24,18 @@
 #include "philo_set_time_last_meal.h"
 #include "philo_set_ownership.h"
 #include "table_get_state.h"
+#include "table_is_ready.h"
+#include "table_notify_ready.h"
 #include "time_millis.h"
 #include "table.h"
 
-static void	*loop(void *data)
+static void	philo_init_state(t_s_philo *philo)
 {
-	t_s_philo	*philo;
 	int64_t		time_start;
 
-	if (data == NULL)
-		return (NULL);
-	philo = (t_s_philo *)data;
-	while (table_get_state() == IDLE)
-		continue ;
 	time_start = table_get()->time_start;
 	philo_set_time_last_meal(philo, time_start);
-	if (philo->id % 2 == 1)
+	if (philo->id % 2 != 0)
 	{
 		philo_set_state(philo, STATE_PICK_FORK, time_start);
 		philo_set_ownership(philo, true);
@@ -49,6 +45,21 @@ static void	*loop(void *data)
 	}
 	else
 		philo_set_state(philo, STATE_THINKING, time_start);
+}
+
+static void	*loop(void *data)
+{
+	t_s_philo	*philo;
+
+	if (data == NULL)
+		return (NULL);
+	philo = (t_s_philo *)data;
+	while (table_get_state() == IDLE)
+		continue ;
+	philo_init_state(philo);
+	table_notify_ready();
+	while (table_is_ready() == false)
+		continue ;
 	return (philo->runner(philo));
 }
 

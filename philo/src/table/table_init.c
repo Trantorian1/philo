@@ -6,7 +6,7 @@
 /*   By: emcnab <emcnab@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/10 14:36:45 by emcnab            #+#    #+#             */
-/*   Updated: 2023/04/21 11:52:35 by emcnab           ###   ########.fr       */
+/*   Updated: 2023/04/21 14:37:07 by emcnab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,10 +86,14 @@ static void	distribute_cuttlery(t_s_table *table)
 	}
 }
 
+// TODO: add flags so destructor knows wether or not mutexes were initialised
 static int32_t	init_locks(t_s_table *table)
 {
 	if (pthread_mutex_init(&table->lock_state, NULL) != EXIT_SUCCESS)
-		return (EXIT_FAILURE);
+		return ((void)table_destroy(), EXIT_FAILURE);
+	if (pthread_mutex_init(&table->lock_ready, NULL) != EXIT_SUCCESS)
+		return ((void)table_destroy(), EXIT_FAILURE);
+	table->ready = 0;
 	return (EXIT_SUCCESS);
 }
 
