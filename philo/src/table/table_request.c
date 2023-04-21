@@ -6,7 +6,7 @@
 /*   By: emcnab <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 13:28:12 by emcnab            #+#    #+#             */
-/*   Updated: 2023/04/21 12:27:45 by emcnab           ###   ########.fr       */
+/*   Updated: 2023/04/21 14:59:06 by emcnab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,6 @@ bool	table_request(t_s_philo *philo)
 	if (philo == NULL)
 		return (false);
 	if (has_priority(philo, philo->neighbour_left))
-		return (false);
-	if (has_priority(philo, philo->neighbour_right))
 		return (false);
 	philo_set_ownership(philo, true);
 	return (true);
