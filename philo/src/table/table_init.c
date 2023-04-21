@@ -6,7 +6,7 @@
 /*   By: emcnab <emcnab@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/10 14:36:45 by emcnab            #+#    #+#             */
-/*   Updated: 2023/04/21 15:14:38 by emcnab           ###   ########.fr       */
+/*   Updated: 2023/04/21 15:58:25 by emcnab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,8 @@ static int32_t	init_locks(t_s_table *table)
 		return ((void)table_destroy(), EXIT_FAILURE);
 	if (pthread_mutex_init(&table->lock_ready, NULL) != EXIT_SUCCESS)
 		return ((void)table_destroy(), EXIT_FAILURE);
+	if (pthread_mutex_init(&table->lock_time, NULL) != EXIT_SUCCESS)
+		return ((void)table_destroy(), EXIT_FAILURE);
 	table->ready = 0;
 	return (EXIT_SUCCESS);
 }
@@ -107,6 +109,8 @@ int32_t	table_init(t_s_args *args, t_f_runner runner)
 	table->game_state = IDLE;
 	table->size = args->philo_count;
 	table->args = args;
+	table->time_start = 0;
+	table->time_curr = 0;
 	if (init_locks(table) == EXIT_FAILURE)
 		return ((void)table_destroy(), EXIT_FAILURE);
 	if (init_guests(table, runner) == EXIT_FAILURE)

@@ -6,7 +6,7 @@
 /*   By: emcnab <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 16:46:41 by emcnab            #+#    #+#             */
-/*   Updated: 2023/04/21 11:48:37 by emcnab           ###   ########.fr       */
+/*   Updated: 2023/04/21 15:54:54 by emcnab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 #include "table.h"
 #include "message_bus_send.h"
 #include "philo_set_state.h"
+#include "table_get_time.h"
 #include "time_millis.h"
 #include "error_philo.h"
 
@@ -46,13 +47,9 @@ int32_t	philo_eat(t_s_philo *philo)
 	if (philo == NULL)
 		return (EXIT_FAILURE);
 	table = table_get();
-	if (time_millis(&time_curr) != EXIT_SUCCESS)
-	{
-		restore_cutlerry(philo);
-		return (error_philo(philo, STATE_ERROR, -1));
-	}
+	time_curr = table_get_time();
 	time_delta = time_curr - philo->time_last_meal;
-	if (time_delta >= table->args->time_death)
+	if (time_delta > table->args->time_death)
 	{
 		restore_cutlerry(philo);
 		return (error_philo(philo, STATE_DEAD, time_curr));

@@ -6,7 +6,7 @@
 /*   By: emcnab <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 17:30:51 by emcnab            #+#    #+#             */
-/*   Updated: 2023/04/21 10:58:26 by emcnab           ###   ########.fr       */
+/*   Updated: 2023/04/21 15:55:09 by emcnab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 #include "error_philo.h"
 #include "table.h"
 #include "philo_set_state.h"
+#include "table_get_time.h"
 #include "time_millis.h"
 #include "libft.h"
 
@@ -30,11 +31,10 @@ int32_t	philo_sleep(t_s_philo *philo)
 
 	if (philo == NULL)
 		return (EXIT_FAILURE);
-	if (time_millis(&time_curr) != EXIT_SUCCESS)
-		return (error_philo(philo, STATE_ERROR, -1));
+	time_curr = table_get_time();
 	table_args = table_get()->args;
 	time_delta = time_curr - philo->time_last_meal;
-	if (time_delta >= table_args->time_death)
+	if (time_delta > table_args->time_death)
 		return (error_philo(philo, STATE_DEAD, time_curr));
 	if (time_delta - table_args->time_eat < table_args->time_sleep)
 		return (EXIT_SUCCESS);

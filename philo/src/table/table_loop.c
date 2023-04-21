@@ -6,7 +6,7 @@
 /*   By: emcnab <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 14:12:44 by emcnab            #+#    #+#             */
-/*   Updated: 2023/04/18 10:06:59 by emcnab           ###   ########.fr       */
+/*   Updated: 2023/04/21 15:59:54 by emcnab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 #include "s_table.h"
 #include "table.h"
 #include "table_set_state.h"
+#include "time_millis.h"
 
 static int32_t	table_loop_exit(void)
 {
@@ -45,6 +46,10 @@ int32_t	table_loop(void)
 		satiated = 0;
 		while (++index < table->size)
 		{
+			pthread_mutex_lock(&table->lock_time);
+			if (time_millis(&table->time_curr) != EXIT_SUCCESS)
+				return (table_loop_exit());
+			pthread_mutex_unlock(&table->lock_time);
 			state = philo_get_state(&table->guests[index]);
 			if (state == STATE_DEAD || state == STATE_DEAD)
 				return (table_loop_exit());
