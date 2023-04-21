@@ -6,7 +6,7 @@
 /*   By: emcnab <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 13:28:12 by emcnab            #+#    #+#             */
-/*   Updated: 2023/04/21 11:54:00 by emcnab           ###   ########.fr       */
+/*   Updated: 2023/04/21 12:20:38 by emcnab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@ static bool	has_priority(t_s_philo *philo, t_s_philo *neighbour)
 
 	if (neighbour == philo)
 		return (true);
-	pthread_mutex_lock(&neighbour->lock_attr);
 	bias = table_get()->args->time_eat;
+	pthread_mutex_lock(&neighbour->lock_attr);
 	priority_meals = neighbour->time_last_meal + bias < philo->time_last_meal;
 	priority_owner = neighbour->ownership == true;
 	pthread_mutex_unlock(&neighbour->lock_attr);
@@ -41,15 +41,8 @@ static bool	has_priority(t_s_philo *philo, t_s_philo *neighbour)
 
 bool	table_request(t_s_philo *philo)
 {
-	// t_s_table	*table;
-	// t_s_philo	*neighbour_left;
-	// t_s_philo	*neighbour_right;
-
 	if (philo == NULL)
 		return (false);
-	// table = table_get();
-	// neighbour_left = table_get_left(table, philo->id);
-	// neighbour_right = table_get_right(table, philo->id);
 	if (has_priority(philo, philo->neighbour_left))
 		return (false);
 	if (has_priority(philo, philo->neighbour_right))

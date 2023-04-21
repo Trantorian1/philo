@@ -6,7 +6,7 @@
 /*   By: emcnab <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 18:20:18 by emcnab            #+#    #+#             */
-/*   Updated: 2023/04/21 11:58:50 by emcnab           ###   ########.fr       */
+/*   Updated: 2023/04/21 12:20:25 by emcnab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 #include "e_philo_state.h"
 #include "philo_set_state.h"
 #include "philo_set_time_last_meal.h"
+#include "philo_set_ownership.h"
 #include "table_get_state.h"
 #include "time_millis.h"
 #include "table.h"
@@ -30,7 +31,6 @@ static void	*loop(void *data)
 {
 	t_s_philo	*philo;
 	int64_t		time_start;
-	int64_t		bias;
 
 	if (data == NULL)
 		return (NULL);
@@ -38,9 +38,14 @@ static void	*loop(void *data)
 	while (table_get_state() == IDLE)
 		continue ;
 	time_start = table_get()->time_start;
-	bias = philo->id % 2 * table_get()->args->time_eat;
-	philo_set_time_last_meal(philo, time_start + bias);
-	philo_set_state(philo, STATE_THINKING, time_start);
+	philo_set_time_last_meal(philo, time_start);
+	if (philo->id % 2 == 1)
+	{
+		philo_set_ownership(philo, true);
+		philo_set_state(philo, STATE_PICK_FORK, time_start);
+	}
+	else
+		philo_set_state(philo, STATE_THINKING, time_start);
 	return (philo->runner(philo));
 }
 
