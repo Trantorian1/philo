@@ -6,7 +6,7 @@
 /*   By: emcnab <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 18:20:18 by emcnab            #+#    #+#             */
-/*   Updated: 2023/04/21 11:30:52 by emcnab           ###   ########.fr       */
+/*   Updated: 2023/04/21 11:58:50 by emcnab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static void	*loop(void *data)
 	while (table_get_state() == IDLE)
 		continue ;
 	time_start = table_get()->time_start;
-	bias = philo->id % 2;
+	bias = philo->id % 2 * table_get()->args->time_eat;
 	philo_set_time_last_meal(philo, time_start + bias);
 	philo_set_state(philo, STATE_THINKING, time_start);
 	return (philo->runner(philo));
