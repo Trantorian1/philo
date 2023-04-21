@@ -6,19 +6,21 @@
 /*   By: emcnab <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 17:30:51 by emcnab            #+#    #+#             */
-/*   Updated: 2023/04/17 16:05:09 by emcnab           ###   ########.fr       */
+/*   Updated: 2023/04/21 10:13:54 by emcnab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo_sleep.h"
 
 #include <stdlib.h>
+#include <unistd.h>
 
 #include "e_philo_state.h"
 #include "error_philo.h"
 #include "table.h"
 #include "philo_set_state.h"
 #include "time_millis.h"
+#include "libft.h"
 
 int32_t	philo_sleep(t_s_philo *philo)
 {
@@ -31,7 +33,7 @@ int32_t	philo_sleep(t_s_philo *philo)
 		return (error_philo(philo, STATE_ERROR, -1));
 	time_delta = time_curr - philo->time_last_meal;
 	if (time_delta >= table_get()->args->time_death)
-		return (error_philo(philo, STATE_ERROR, time_curr));
+		return (error_philo(philo, STATE_DEAD, time_curr));
 	if (time_delta < table_get()->args->time_sleep)
 		return (EXIT_SUCCESS);
 	return (philo_set_state(philo, STATE_THINKING, time_curr));
