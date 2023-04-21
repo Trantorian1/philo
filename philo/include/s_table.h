@@ -6,7 +6,7 @@
 /*   By: emcnab <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 18:15:27 by emcnab            #+#    #+#             */
-/*   Updated: 2023/04/17 16:25:29 by emcnab           ###   ########.fr       */
+/*   Updated: 2023/04/21 11:38:38 by emcnab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,10 @@ typedef struct s_table
 	int32_t			size;
 	int64_t			time_start;
 	t_e_game_state	game_state;
+	pthread_mutex_t	lock_state;
 	t_s_args		*args;
 	t_s_philo		*guests;
 	pthread_mutex_t	*forks;
-	pthread_mutex_t	*lock_request;
-	pthread_mutex_t	*lock_state;
 }	t_s_table;
 
 #endif // !DEBUG

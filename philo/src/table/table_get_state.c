@@ -6,7 +6,7 @@
 /*   By: emcnab <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 14:37:20 by emcnab            #+#    #+#             */
-/*   Updated: 2023/04/17 14:53:12 by emcnab           ###   ########.fr       */
+/*   Updated: 2023/04/21 11:41:22 by emcnab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ t_e_game_state	table_get_state(void)
 	t_e_game_state	state;
 
 	table = table_get();
-	pthread_mutex_lock(table->lock_state);
+	pthread_mutex_lock(&table->lock_state);
 	state = table->game_state;
-	pthread_mutex_unlock(table->lock_state);
+	pthread_mutex_unlock(&table->lock_state);
 	return (state);
 }
