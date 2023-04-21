@@ -6,7 +6,7 @@
 /*   By: emcnab <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 10:08:21 by emcnab            #+#    #+#             */
-/*   Updated: 2023/04/21 16:16:56 by emcnab           ###   ########.fr       */
+/*   Updated: 2023/04/21 17:03:51 by emcnab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,17 @@
 # include "e_philo_state.h"
 # include "f_runner.h"
 
+/**
+ * @typedef s_philo
+ * @brief A philosopher in Dijkstra's dining philosophers problem
+ *
+ * Philosphers are sat down together at a table, with one fork per philosopher.
+ * Each philospher needs two forks to eat, and as such forks needs to be shared
+ * between neighbours. It takes a philosopher x time to eat, after which
+ * they must sleep for y time. If a philospher has not eaten in z time, then
+ * they die. Contants x, y and z are provided as arguments at the start of the
+ * program.
+ */
 typedef struct s_philo
 {
 	int32_t			id;

@@ -6,7 +6,7 @@
 /*   By: emcnab <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 10:56:50 by emcnab            #+#    #+#             */
-/*   Updated: 2023/04/17 15:32:58 by emcnab           ###   ########.fr       */
+/*   Updated: 2023/04/21 17:11:51 by emcnab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,14 @@
 
 # include "e_philo_state.h"
 
+/**
+ * @typedef s_message
+ * @brief A state change message 
+ *
+ * Describes a change in state for a philosopher, where id is the ID of the
+ * philosopher, time is the time of the state change and state is the
+ * philosopher's new state.
+ */
 typedef struct s_message
 {
 	int32_t			id;

@@ -6,7 +6,7 @@
 /*   By: emcnab <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/10 18:24:13 by emcnab            #+#    #+#             */
-/*   Updated: 2023/04/17 16:25:35 by emcnab           ###   ########.fr       */
+/*   Updated: 2023/04/21 17:08:20 by emcnab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,16 +34,6 @@
 #include "table_loop.h"
 #include "table_set_state.h"
 #include "time_millis.h"
-
-// static void	*runner(void *data)
-// {
-// 	t_s_philo		*philo;
-//
-// 	philo = (t_s_philo *)data;
-// 	philo->state = STATE_THINKING;
-// 	message_bus_send(philo->id, philo->state);
-// 	return (NULL);
-// }
 
 static void	simulation_end(void)
 {
@@ -73,6 +63,9 @@ static int32_t	simulation_start(t_s_args *args)
 // WARNING: remember to call message_bus_flush once all threads have been joined
 // TODO: for perfomance reasons, should only call table_join once all philo
 // threads have finished executing
+/**
+ * @brief Entry point for Dijkstra's dining philosophers problem.
+ */
 int	main(int32_t argc, char **argv)
 {
 	t_s_args	*args;
