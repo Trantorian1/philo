@@ -6,7 +6,7 @@
 /*   By: emcnab <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 11:45:48 by emcnab            #+#    #+#             */
-/*   Updated: 2023/04/21 10:26:04 by emcnab           ###   ########.fr       */
+/*   Updated: 2023/04/22 17:11:22 by emcnab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,26 +42,26 @@ static void	message_bus_flush_iterative(
 	}
 }
 
-// static void	message_bus_flush_circular(
-// 	t_s_message_bus *message_bus,
-// 	t_s_message *tail,
-// 	t_s_message *head)
-// {
-// 	t_s_message	*cursor;
-//
-// 	cursor = tail;
-// 	while (cursor < (message_bus->buffer_start + MESSAGE_BUS_SIZE))
-// 	{
-// 		message_print(cursor);
-// 		cursor++;
-// 	}
-// 	cursor = message_bus->buffer_start;
-// 	while (cursor < head)
-// 	{
-// 		message_print(cursor);
-// 		cursor++;
-// 	}
-// }
+static void	message_bus_flush_circular(
+	t_s_message_bus *message_bus,
+	t_s_message *tail,
+	t_s_message *head)
+{
+	t_s_message	*cursor;
+
+	cursor = tail;
+	while (cursor < (message_bus->buffer_start + MESSAGE_BUS_SIZE))
+	{
+		message_print(cursor);
+		cursor++;
+	}
+	cursor = message_bus->buffer_start;
+	while (cursor < head)
+	{
+		message_print(cursor);
+		cursor++;
+	}
+}
 
 /**
  * @brief Flushes the message bus in a thread-safe way.
@@ -91,13 +91,13 @@ int32_t	message_bus_flush(void)
 		return (EXIT_SUCCESS);
 	}
 	message_bus->size = 0;
-	pthread_mutex_unlock(&message_bus->lock_size);
 	tail = message_bus_get_tail();
 	head = message_bus_get_head();
+	pthread_mutex_unlock(&message_bus->lock_size);
 	if (tail < head)
 		message_bus_flush_iterative(tail, head);
-	// else
-	// 	message_bus_flush_circular(message_bus, tail, head);
+	else
+		message_bus_flush_circular(message_bus, tail, head);
 	message_bus_tail_update(message_bus, head);
 	return (EXIT_SUCCESS);
 }

@@ -6,7 +6,7 @@
 /*   By: emcnab <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 11:34:37 by emcnab            #+#    #+#             */
-/*   Updated: 2023/04/21 14:27:03 by emcnab           ###   ########.fr       */
+/*   Updated: 2023/04/22 17:11:18 by emcnab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,6 @@ static void	message_bus_incr_size(t_s_message_bus *message_bus)
  *
  * @return (int32_t): EXIT_SUCCESS.
  */
-// TODO: implement message bus freeze as soon as a philo dies (necessary ?)
-// WARNING: still needs to receive last death message
 int32_t	message_bus_send(int64_t time, int32_t id, t_e_philo_state state)
 {
 	t_s_message_bus	*message_bus;
@@ -75,8 +73,8 @@ int32_t	message_bus_send(int64_t time, int32_t id, t_e_philo_state state)
 	head->time = time - table_get()->time_start;
 	head->id = id;
 	head->state = state;
-	message_bus_incr_head(message_bus);
 	message_bus_incr_size(message_bus);
+	message_bus_incr_head(message_bus);
 	pthread_mutex_unlock(&message_bus->lock_write);
 	return (EXIT_SUCCESS);
 }
