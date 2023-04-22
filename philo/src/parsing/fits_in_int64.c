@@ -6,7 +6,7 @@
 /*   By: emcnab <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 11:54:57 by emcnab            #+#    #+#             */
-/*   Updated: 2023/04/17 12:12:45 by emcnab           ###   ########.fr       */
+/*   Updated: 2023/04/22 16:34:55 by emcnab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,8 +74,8 @@ int64_t	fits_in_int64(char *str_int, char **endptr, int8_t sign)
 	else if (size > LONG_LEN)
 		return (parse_failure(endptr, str_int + size));
 	else if (sign == -1 && ft_strcmp(LONG_MIN_STR, str_int) < 0)
-		return (parse_failure(endptr, str_int + size));
+		return (parse_failure(endptr, str_int));
 	else if (sign == 1 && ft_strcmp(LONG_MAX_STR, str_int) < 0)
-		return (parse_failure(endptr, str_int + size));
+		return (parse_failure(endptr, str_int));
 	return (parse_success(endptr, str_int + size));
 }

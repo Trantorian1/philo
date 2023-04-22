@@ -6,7 +6,7 @@
 /*   By: emcnab <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 11:27:19 by emcnab            #+#    #+#             */
-/*   Updated: 2023/04/17 11:52:16 by emcnab           ###   ########.fr       */
+/*   Updated: 2023/04/21 17:31:33 by emcnab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,21 @@
 #include "fits_in_int32.h"
 #include "libft.h"
 
+/**
+ * @brief Parse an int32_t, overflows are considered as errors.
+ *
+ * Valid entry formats are:
+ * whitespaces -> sign -> zeros -> digits
+ *
+ * If the int being described in the string does not fit in an int32_t, returns
+ * 0 instead.
+ *
+ * @param str_int (char *): String representation of an int.
+ * @param endptr (char **): Will be set to the last character to be parsed. '\0'
+ * means that no other character was found after the last digit and shoudl be
+ * treated as the only success case.
+ * @return (int32_t): int representation of (str_int).
+ */
 int32_t	parse_int32(char *str_int, char **endptr)
 {
 	char	**cursor;
@@ -39,5 +54,5 @@ int32_t	parse_int32(char *str_int, char **endptr)
 	if (fits_in_int32(*cursor, endptr, sign) == EXIT_FAILURE
 		|| **endptr != '\0')
 		return (0);
-	return (ft_atoi(*cursor));
+	return (sign * ft_atoi(*cursor));
 }

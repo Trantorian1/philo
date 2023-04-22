@@ -6,7 +6,7 @@
 /*   By: emcnab <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 19:15:16 by emcnab            #+#    #+#             */
-/*   Updated: 2023/04/13 19:28:31 by emcnab           ###   ########.fr       */
+/*   Updated: 2023/04/22 16:42:03 by emcnab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,23 +23,34 @@
 			\n│                                                               │\
 			\n│ - project by Eliot McNab                                      │\
 			\n│                                                               │\
-			\n│  This is a test project involving the use of monitors in a    │\
-			\n│  multithreaded environment as a means to synchronise data     │\
-			\n│  access across threads while maintaining high performance     │\
-			\n│  and thread safety.                                           │\
+			\n│  This is an implementation of Dijkstra's dining philosopher   │\
+			\n│  problem. The goal of this solution was experimenting with    │\
+			\n│  the use of monitors in a multithreaded environment as a      │\
+			\n│  means to synchronise data access across threads while        │\
+			\n│  maintaining high performance and thread safety.              │\
 			\n│                                                               │\
 			\n│  command:                                                     │\
             \n│   ./philo philo_count time_to_die time_to_eat time_to_sleep   │\
-			\n│                       [target_meals]                          │\
+			\n│           [target_meals]                                      │\
 			\n│                                                               │\
 			\n│  parameters:                                                  │\
-			\n│   time_to_die    amount of time (in milliseconds) it takes    │\
+			\n│   time_to_die    [0; INT32_MAX]                               │\
+			\n│                  Number of philosophers to simulate.          │\
+			\n│                                                               │\
+			\n│   time_to_die    [0; INT32_MAX]                               │\
+			\n│                  Amount of time (in milliseconds) it takes    │\
 			\n│                  for a philosopher to die.                    │\
-			\n│   time_to_eat    amount of time (in milliseconds) it takes    │\
+			\n│                                                               │\
+			\n│   time_to_eat    [1; INT64_MAX]                               │\
+			\n│                  amount of time (in milliseconds) it takes    │\
 			\n│                  for a philosopher to eat.                    │\
-			\n│   time_to_sleep  amount of time (in milliseconds) it takes    │\
+			\n│                                                               │\
+			\n│   time_to_sleep  [1; INT64_MAX]                               │\
+			\n│                  amount of time (in milliseconds) it takes    │\
 			\n│                  for a philosopher to sleep.                  │\
-			\n│   target_meals   number of meals each philosopher must eat    │\
+			\n│                                                               │\
+			\n│   target_meals   [1; INT32_MAX]                               │\
+			\n│                  number of meals each philosopher must eat    │\
 			\n│                  for the simulation to stop. If unspecified,  │\
 			\n│                  simulation will go on forever.               │\
 			\n│                                                               │\

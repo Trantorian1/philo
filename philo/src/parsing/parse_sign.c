@@ -6,7 +6,7 @@
 /*   By: emcnab <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 11:33:30 by emcnab            #+#    #+#             */
-/*   Updated: 2023/04/12 11:38:22 by emcnab           ###   ########.fr       */
+/*   Updated: 2023/04/21 17:32:56 by emcnab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int32_t	parse_sign(char **str_int, int8_t *sign)
 		(*str_int)++;
 		*sign = -1;
 	}
-	if (**str_int == '+')
+	else if (**str_int == '+')
 	{
 		(*str_int)++;
 		*sign = 1;

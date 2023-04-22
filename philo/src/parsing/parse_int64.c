@@ -6,7 +6,7 @@
 /*   By: emcnab <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 11:49:56 by emcnab            #+#    #+#             */
-/*   Updated: 2023/04/17 12:12:58 by emcnab           ###   ########.fr       */
+/*   Updated: 2023/04/21 17:31:20 by emcnab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,21 @@
 #include "fits_in_int64.h"
 #include "libft.h"
 
+/**
+ * @brief Parse an int64_t, overflows are considered as errors.
+ *
+ * Valid entry formats are:
+ * whitespaces -> sign -> zeros -> digits
+ *
+ * If the int being described in the string does not fit in an int64_t, returns
+ * 0 instead.
+ *
+ * @param str_int (char *): String representation of an int.
+ * @param endptr (char **): Will be set to the last character to be parsed. '\0'
+ * means that no other character was found after the last digit and shoudl be
+ * treated as the only success case.
+ * @return (int64_t): int representation of (str_int).
+ */
 int64_t	parse_int64(char *str_int, char **endptr)
 {
 	char	**cursor;
@@ -39,5 +54,5 @@ int64_t	parse_int64(char *str_int, char **endptr)
 	if (fits_in_int64(*cursor, endptr, sign) == EXIT_FAILURE
 		|| **endptr != '\0')
 		return (0);
-	return (ft_atol(*cursor));
+	return (sign * ft_atol(*cursor));
 }
