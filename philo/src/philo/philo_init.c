@@ -6,7 +6,7 @@
 /*   By: emcnab <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 18:20:18 by emcnab            #+#    #+#             */
-/*   Updated: 2023/04/21 16:17:37 by emcnab           ###   ########.fr       */
+/*   Updated: 2023/04/21 17:40:13 by emcnab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,9 @@ static void	philo_init_state(t_s_philo *philo)
 
 	time_start = table_get()->time_start;
 	philo_set_time_last_meal(philo, time_start);
-	if (philo->id % 2 != 0)
+	if (table_get()->args->time_death == 0)
+		philo_set_state(philo, STATE_DEAD, time_start);
+	else if (philo->id % 2 != 0)
 	{
 		philo_set_state(philo, STATE_PICK_FORK, time_start);
 		philo_set_ownership(philo, true);

@@ -6,12 +6,12 @@
 /*   By: emcnab <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 18:24:42 by emcnab            #+#    #+#             */
-/*   Updated: 2023/04/10 10:47:05 by emcnab           ###   ########.fr       */
+/*   Updated: 2023/04/22 16:52:41 by emcnab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef E_ERROR_CODES_H
-# define E_ERROR_CODES_H
+#ifndef E_ERROR_CODE_H
+# define E_ERROR_CODE_H
 
 typedef enum e_error_code
 {

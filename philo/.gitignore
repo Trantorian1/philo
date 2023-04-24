@@ -4,3 +4,8 @@ bin/**
 
 # ignores vscode config files
 .vscode/**
+
+# ignores all test files
+a.out
+test.c
+out.txt

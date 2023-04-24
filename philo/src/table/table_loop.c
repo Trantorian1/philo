@@ -6,7 +6,7 @@
 /*   By: emcnab <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 14:12:44 by emcnab            #+#    #+#             */
-/*   Updated: 2023/04/21 15:59:54 by emcnab           ###   ########.fr       */
+/*   Updated: 2023/04/22 17:03:13 by emcnab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,32 @@ static int32_t	table_loop_exit(void)
 	return (EXIT_SUCCESS);
 }
 
+static int32_t	update_clock(t_s_table *table)
+{
+	int32_t	error_code;
+
+	pthread_mutex_lock(&table->lock_time);
+	error_code = time_millis(&table->time_curr);
+	pthread_mutex_unlock(&table->lock_time);
+	return (error_code);
+}
+
+static int32_t	update_state(t_s_philo *philo)
+{
+	t_e_philo_state	state;
+
+	state = philo_get_state(philo);
+	if (state == STATE_DEAD || state == STATE_DEAD)
+		return (EXIT_FAILURE);
+	return (EXIT_SUCCESS);
+}
+
 int32_t	table_loop(void)
 {
 	t_s_table		*table;
 	int32_t			index;
 	int32_t			satiated;
-	t_e_philo_state	state;
+	int32_t			philo_meals;
 
 	table = table_get();
 	while (true)
@@ -46,17 +66,15 @@ int32_t	table_loop(void)
 		satiated = 0;
 		while (++index < table->size)
 		{
-			pthread_mutex_lock(&table->lock_time);
-			if (time_millis(&table->time_curr) != EXIT_SUCCESS)
+			if (update_clock(table) != EXIT_SUCCESS)
 				return (table_loop_exit());
-			pthread_mutex_unlock(&table->lock_time);
-			state = philo_get_state(&table->guests[index]);
-			if (state == STATE_DEAD || state == STATE_DEAD)
+			if (update_state(&table->guests[index]) != EXIT_SUCCESS)
 				return (table_loop_exit());
-			if (philo_get_meals(&table->guests[index]) >= table->args->meal_target)
+			philo_meals = philo_get_meals(&table->guests[index]);
+			if (philo_meals >= table->args->meal_target)
 				satiated++;
 		}
-		if (satiated == table->size)
+		if (table->args->meal_target > 0 && satiated == table->size)
 			return (table_loop_exit());
 		message_bus_flush();
 	}

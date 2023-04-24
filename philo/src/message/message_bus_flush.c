@@ -6,7 +6,7 @@
 /*   By: emcnab <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 11:45:48 by emcnab            #+#    #+#             */
-/*   Updated: 2023/04/22 17:11:22 by emcnab           ###   ########.fr       */
+/*   Updated: 2023/04/24 15:02:44 by emcnab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,24 @@
 #include "message_bus_get_head.h"
 #include "message_print.h"
 
-static void	message_bus_tail_update(
-	t_s_message_bus *message_bus,
-	t_s_message *head)
+static t_s_message	*message_bus_incr_head(t_s_message_bus *message_bus)
+{
+	t_s_message	*message;
+
+	pthread_mutex_lock(&message_bus->lock_head);
+	if (message_bus->head < (message_bus->buffer_start + MESSAGE_BUS_SIZE - 1))
+		message_bus->head++;
+	else
+		message_bus->head = message_bus->buffer_start;
+	message = message_bus->head;
+	pthread_mutex_unlock(&message_bus->lock_head);
+	return (message);
+}
+
+static void	message_bus_update(t_s_message_bus *message_bus)
 {
 	pthread_mutex_lock(&message_bus->lock_tail);
-	message_bus->tail = head;
+	message_bus->tail = message_bus_incr_head(message_bus);
 	pthread_mutex_unlock(&message_bus->lock_tail);
 }
 
@@ -84,20 +96,20 @@ int32_t	message_bus_flush(void)
 	t_s_message		*head;
 
 	message_bus = message_bus_get();
-	pthread_mutex_lock(&message_bus->lock_size);
+	pthread_mutex_lock(&message_bus->lock_write);
+	tail = message_bus_get_tail();
+	head = message_bus_get_head();
 	if (message_bus->size == 0)
 	{
-		pthread_mutex_unlock(&message_bus->lock_size);
+		pthread_mutex_unlock(&message_bus->lock_write);
 		return (EXIT_SUCCESS);
 	}
 	message_bus->size = 0;
-	tail = message_bus_get_tail();
-	head = message_bus_get_head();
-	pthread_mutex_unlock(&message_bus->lock_size);
+	message_bus_update(message_bus);
+	pthread_mutex_unlock(&message_bus->lock_write);
 	if (tail < head)
 		message_bus_flush_iterative(tail, head);
 	else
 		message_bus_flush_circular(message_bus, tail, head);
-	message_bus_tail_update(message_bus, head);
 	return (EXIT_SUCCESS);
 }

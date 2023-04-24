@@ -6,7 +6,7 @@
 /*   By:  <>                                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 16:42:13 by                   #+#    #+#             */
-/*   Updated: 2023/04/14 16:45:24 by emcnab           ###   ########.fr       */
+/*   Updated: 2023/04/22 16:53:10 by emcnab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include <stdint.h>
 
-#include "f_runner.h"
+# include "f_runner.h"
 # include "s_args.h"
 
 int32_t	table_init(t_s_args *args, t_f_runner runner);

@@ -6,7 +6,7 @@
 /*   By: emcnab <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 11:34:37 by emcnab            #+#    #+#             */
-/*   Updated: 2023/04/22 17:11:18 by emcnab           ###   ########.fr       */
+/*   Updated: 2023/04/24 14:59:38 by emcnab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,21 +22,30 @@
 #include "table.h"
 #include "table_get_state.h"
 
-static void	message_bus_incr_head(t_s_message_bus *message_bus)
+#define FLUSH_THRESHOLD 32
+
+static t_s_message	*message_bus_incr_head(t_s_message_bus *message_bus)
 {
+	t_s_message	*head;
+
 	pthread_mutex_lock(&message_bus->lock_head);
 	if (message_bus->head < (message_bus->buffer_start + MESSAGE_BUS_SIZE - 1))
 		message_bus->head++;
 	else
 		message_bus->head = message_bus->buffer_start;
+	head = message_bus->head;
 	pthread_mutex_unlock(&message_bus->lock_head);
+	return (head);
 }
 
-static void	message_bus_incr_size(t_s_message_bus *message_bus)
+static size_t	message_bus_incr_size(t_s_message_bus *message_bus)
 {
+	size_t	size_buffer;
+
 	pthread_mutex_lock(&message_bus->lock_size);
-	message_bus->size++;
+	size_buffer = message_bus->size++;
 	pthread_mutex_unlock(&message_bus->lock_size);
+	return (size_buffer);
 }
 
 /**
@@ -63,18 +72,21 @@ int32_t	message_bus_send(int64_t time, int32_t id, t_e_philo_state state)
 	t_s_message_bus	*message_bus;
 	t_s_message		*tail;
 	t_s_message		*head;
+	size_t			size;
 
 	message_bus = message_bus_get();
 	pthread_mutex_lock(&message_bus->lock_write);
 	tail = message_bus_get_tail();
 	head = message_bus_get_head();
-	if (message_bus_get_size() > 0 && head == tail)
-		message_bus_flush();
 	head->time = time - table_get()->time_start;
 	head->id = id;
 	head->state = state;
-	message_bus_incr_size(message_bus);
-	message_bus_incr_head(message_bus);
+	size = message_bus_incr_size(message_bus);
+	head = message_bus_incr_head(message_bus);
 	pthread_mutex_unlock(&message_bus->lock_write);
+	if (head > tail)
+		return (EXIT_SUCCESS);
+	if (size > 0 && (tail - head) <= FLUSH_THRESHOLD)
+		message_bus_flush();
 	return (EXIT_SUCCESS);
 }
