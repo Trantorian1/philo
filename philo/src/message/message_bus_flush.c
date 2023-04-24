@@ -6,7 +6,7 @@
 /*   By: emcnab <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 11:45:48 by emcnab            #+#    #+#             */
-/*   Updated: 2023/04/24 15:13:47 by emcnab           ###   ########.fr       */
+/*   Updated: 2023/04/24 15:25:54 by emcnab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,24 +19,10 @@
 #include "message_bus_get_head.h"
 #include "message_print.h"
 
-static t_s_message	*message_bus_incr_head(t_s_message_bus *message_bus)
-{
-	t_s_message	*message;
-
-	pthread_mutex_lock(&message_bus->lock_head);
-	if (message_bus->head < (message_bus->buffer_start + MESSAGE_BUS_SIZE - 1))
-		message_bus->head++;
-	else
-		message_bus->head = message_bus->buffer_start;
-	message = message_bus->head;
-	pthread_mutex_unlock(&message_bus->lock_head);
-	return (message);
-}
-
-static void	message_bus_update(t_s_message_bus *message_bus)
+static void	update_tail(t_s_message_bus *message_bus, t_s_message *head)
 {
 	pthread_mutex_lock(&message_bus->lock_tail);
-	message_bus->tail = message_bus_incr_head(message_bus);
+	message_bus->tail = head;
 	pthread_mutex_unlock(&message_bus->lock_tail);
 }
 
@@ -109,8 +95,8 @@ int32_t	message_bus_flush(void)
 		return (EXIT_SUCCESS);
 	}
 	message_bus->size = 0;
-	message_bus_update(message_bus);
 	pthread_mutex_unlock(&message_bus->lock_write);
+	update_tail(message_bus, head);
 	if (tail < head)
 		message_bus_flush_iterative(tail, head);
 	else
