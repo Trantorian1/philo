@@ -6,7 +6,7 @@
 /*   By: emcnab <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 11:45:48 by emcnab            #+#    #+#             */
-/*   Updated: 2023/04/24 15:02:44 by emcnab           ###   ########.fr       */
+/*   Updated: 2023/04/24 15:13:47 by emcnab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,16 +78,20 @@ static void	message_bus_flush_circular(
 /**
  * @brief Flushes the message bus in a thread-safe way.
  *
- * Flusing is independant of writing messages in the bus and can be called while
- * other writes are occurring. This is because the message buffer head is only
- * updated at the end of a write.
+ * Flushes the message bus. Flushing is independant from writing, so this can be
+ * performed as other threads write to the bus. Writing will only be locked for
+ * the time it takes to retrieve the head of the buffer. This supposes that
+ * other threads will not have time to overwrite pervious messages in the bus
+ * as it is being flushed. For this reason, a safety threshold is set in
+ * message_bus_send which flushes the buffer before it has been completly
+ * filled, avoiding overwrites.
  *
  * @warning Due to the independant nature of message_bus_flush and
- * message_bus_send, it is possible some messages to be missed when flushing. As
- * a precaution, message_bus_flush should be called one last time once all
- * threads have been joined.
+ * message_bus_send, it is possible for some messages to be missed during 
+ * flushing. As a precaution, message_bus_flush should be called one last time
+ * once all messaging threads have been joined.
  *
- * @return (int32_t) EXIT_SUCCESS
+ * @return (int32_t): EXIT_SUCCESS
  */
 int32_t	message_bus_flush(void)
 {

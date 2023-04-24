@@ -6,7 +6,7 @@
 /*   By: emcnab <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 11:34:37 by emcnab            #+#    #+#             */
-/*   Updated: 2023/04/24 14:59:38 by emcnab           ###   ########.fr       */
+/*   Updated: 2023/04/24 15:18:03 by emcnab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,14 +52,19 @@ static size_t	message_bus_incr_size(t_s_message_bus *message_bus)
  * @brief Sends a message in a thread-safe way.
  *
  * Messages are sent to the message bus in a way that blocks writes but
- * minimises read blocks. Write block occurrs until message has been sent, but
- * read block only occurrs when retrieving and updating the last message.
+ * minimises read blocks. Writing is blocked for the duration of the message
+ * send, but reading is only blocked for the time it takes to retrieve and
+ * update the head.
  *
- * If the message bus is full, it will be automatically flushed. Updating the
- * message bus is done in such a way that if the flush function is called while
- * a new message is being added, but before the message values have been
- * updated, no invalid data will be read. This is because the message buffer
- * head is atomically incremented only once the message has been updated.
+ * If the message bus is full, it will be automatically flushed. A security
+ * threashold is set to avoid buffer overwrites, so the message bus may flush
+ * early. This avoids message_bus_flush reading any data as it is being updated
+ * by message_bus_send.
+ *
+ * Updating the message bus is done in such a way that if the flush function is
+ * called while a new message is being added, but before the message values have
+ * been updated, no invalid data will be read. This is because the message
+ * buffer head is atomically incremented only once the message has been updated.
  *
  * @param id (size_t): Id of the philosopher sending the message.
  * @param state (t_e_philo_state): State of the philosopher sending the message.
