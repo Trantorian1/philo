@@ -6,7 +6,7 @@
 #    By: emcnab <emcnab@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/06 14:08:48 by emcnab            #+#    #+#              #
-#    Updated: 2023/04/24 16:45:45 by emcnab           ###   ########.fr        #
+#    Updated: 2023/04/25 09:43:29 by emcnab           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -141,7 +141,7 @@ $(DIR_DEPS)/%.d: $(DIR_SRCS)/%.c
 # This will only execute once the libft gitmodule has been initialised.
 $(LIB_FT): $(LIB_GIT)
 	@echo "$(BOLD)$(BLUE)building $(WHITE)$(LIB_FT)$(RESET)"
-	@rake -s -C $(@D)
+	@make -s -C $(@D)
 
 
 
